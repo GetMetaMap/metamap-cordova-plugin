@@ -3,7 +3,7 @@
 Create a new Cordova project or Ionic project
 Add the SDK plugin with the following command
 
-cordova plugin add <path to plugin folder>/MatiGlobalIDSDK
+cordova plugin add https://github.com/MatiFace/MatiGlobalIDSDKCordovaPlugin.git
 
 ## Add Android Platform
 
