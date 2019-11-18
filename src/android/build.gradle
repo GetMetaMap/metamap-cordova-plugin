@@ -1,0 +1,8 @@
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.matilock:mati-global-id-sdk:2.3.4'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+}
