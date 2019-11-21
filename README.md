@@ -39,20 +39,22 @@ Initialize Mati by calling the following line of code:
 
 ### ionic sample component
 
-    import { Component } from "@angular/core";
+    import { Component, NgZone } from "@angular/core";
     import { Platform } from "@ionic/angular";
 
     //global instance of cordova
     declare var cordova: any;
+
     @Component({
       selector: "app-home",
       templateUrl: "home.page.html",
       styleUrls: ["home.page.scss"]
     })
     export class HomePage {
-      constructor(public platform: Platform) {
-        platform.ready().then(() => {
+      yourLabelVariable: string = "No Status";
 
+      constructor(public platform: Platform, zone: NgZone) {
+        platform.ready().then(() => {
           //init sdk
           cordova.plugins.MatiGlobalIDSDK.init("5dc09bd3047ea0001c4b20ba");
 
@@ -63,9 +65,18 @@ Initialize Mati by calling the following line of code:
           cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
             identityId => {
               console.log("setMatiCallback success: " + identityId);
+
+              zone.run(() => {
+                this.yourLabelVariable = "setMatiCallback success: " + identityId;
+              });
             },
             error => {
               console.log("setMatiCallback error: " + error);
+
+              //Run code on Angular zone to update UI
+              zone.run(() => {
+                this.yourLabelVariable = "setMatiCallback error: " + error;
+              });
             }
           );
         });
