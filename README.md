@@ -39,41 +39,42 @@ Initialize Mati by calling the following line of code:
 
 ### ionic sample component
 
-    import { Component, OnInit } from "@angular/core";
+    import { Component } from "@angular/core";
+    import { Platform } from "@ionic/angular";
 
     //global instance of cordova
     declare var cordova: any;
-
     @Component({
-    selector: "app-home",
-    templateUrl: "home.page.html",
-    styleUrls: ["home.page.scss"]
+      selector: "app-home",
+      templateUrl: "home.page.html",
+      styleUrls: ["home.page.scss"]
     })
     export class HomePage {
-    constructor() {}
+      constructor(public platform: Platform) {
+        platform.ready().then(() => {
 
-    //trigger login on button click
-    showMFKYC() {
+          //init sdk
+          cordova.plugins.MatiGlobalIDSDK.init("5dc09bd3047ea0001c4b20ba");
+
+          //Send metadata
+          cordova.plugins.MatiGlobalIDSDK.metadata({ key: "value" });
+
+          //register to login callback
+          cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
+            identityId => {
+              console.log("setMatiCallback success: " + identityId);
+            },
+            error => {
+              console.log("setMatiCallback error: " + error);
+            }
+          );
+        });
+      }
+
+      //trigger login on button click
+      showMFKYC() {
         cordova.plugins.MatiGlobalIDSDK.showMFKYC();
-    }
-
-    ionViewDidEnter() {
-
-        cordova.plugins.MatiGlobalIDSDK.init("your client ID here");
-
-        //Send metadata
-        cordova.plugins.MatiGlobalIDSDK.metadata({ key: "value" });
-
-        //register to login callback
-        cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
-        identityId => {
-            console.log("setMatiCallback success: " + identityId);
-        },
-        error => {
-            console.log("setMatiCallback error: " + error);
-        }
-        );
-    }
+      }
     }
 
 ### cordova in index.js
