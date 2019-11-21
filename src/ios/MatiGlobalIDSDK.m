@@ -59,6 +59,7 @@
 - (void)mfKYCLoginSuccessWithIdentityId:(NSString *)identityId {
     if(setMatiCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:identityId];
+        [pluginResult setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
@@ -66,6 +67,7 @@
 - (void)mfKYCLoginCancelled {
     if(setMatiCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"Cancel"];
+        [pluginResult setKeepCallbackAsBool:YES];
          [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
     }
 }

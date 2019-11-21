@@ -20,6 +20,7 @@ import com.matilock.mati_kyc_sdk.Metadata;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -139,12 +140,16 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
 
     @Override
     public void onSuccess(LoginResult pLoginResult) {
-        mOnCallback.success(pLoginResult.getIdentityId());
+        PluginResult result = new PluginResult(PluginResult.Status.OK, pLoginResult.getIdentityId());
+        result.setKeepCallback(true);
+        mOnCallback.sendPluginResult(result);
     }
 
     @Override
     public void onCancel() {
-        mOnCallback.error(CANCEL);
+        PluginResult result = new PluginResult(PluginResult.Status.ERROR, CANCEL);
+        result.setKeepCallback(true);
+        mOnCallback.sendPluginResult(result);
     }
 
 
