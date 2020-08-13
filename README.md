@@ -125,3 +125,33 @@ The following permissions are needed to capture video and access the photo galle
 <key>NSPhotoLibraryUsageDescription</key>
 <string>Mati needs access to your media library</string>
 ```
+##Make sure that you are using the latest version our sdk
+
+#Android
+
+You have to check your project: YourProject/platforms/android/mati-global-id-sdk-cordova-plugin/demoCordovaMati-build.gradle
+
+```
+dependencies {
+implementation 'com.matilock:mati-global-id-sdk:HERE_IS_LATEST_VERSION'
+}
+```
+Check this for latest version: 
+https://bintray.com/matibiometricskyc/maven/mati-global-id-sdk
+
+#iOS
+
+You have to check your project: YourProject/platforms/ios/Podfile
+
+```
+platform :ios, '9.0'
+target 'demoCordovaMati' do
+    pod 'Mati-Global-ID-SDK'
+end
+```
+Check this for latest version: 
+https://cocoapods.org/pods/Mati-Global-ID-SDK
+
+
+
+
