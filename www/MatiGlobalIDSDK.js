@@ -19,3 +19,7 @@ exports.metadata = function(arg0, success, error) {
 exports.showMFKYC = function(success, error) {
   exec(success, error, "MatiGlobalIDSDK", "showMFKYC", []);
 };
+
+exports.setFlowId = function(arg0, success, error) {
+  exec(success, error, "MatiGlobalIDSDK", "setFlowId", [arg0]);
+};

@@ -12,6 +12,7 @@
 - (void)setMatiCallback:(CDVInvokedUrlCommand*)command;
 - (void)metadata:(CDVInvokedUrlCommand*)command;
 - (void)showMFKYC:(CDVInvokedUrlCommand*)command;
+- (void)setFlowId:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation MatiGlobalIDSDK{
@@ -44,10 +45,20 @@
     
     matiButton = [[MFKYCButton alloc] init];
     matiButton.frame = CGRectMake(-320, 20, 320, 60);//you can change position,width an height
+    NSString* flowId = [command.arguments objectAtIndex:1];
+    if (flowId != nil && [flowId length] > 0) {
+        matiButton.flowId = flowId;
+    }
     matiButton.title = @"Custom Title";
     matiButton.tag = 100;
     [self.webView addSubview:matiButton];
     
+}
+
+- (void)setFlowId:(CDVInvokedUrlCommand*)command
+{
+    NSString* flowId = [command.arguments objectAtIndex:0];
+    matiButton.flowId = flowId;
 }
 
 - (void)setMatiCallback:(CDVInvokedUrlCommand*)command

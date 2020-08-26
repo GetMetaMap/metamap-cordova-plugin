@@ -39,6 +39,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
     public static final String SET_MATI_CALLBACK = "setMatiCallback";
     public static final String INIT = "init";
     public static final String COOL_METHOD = "coolMethod";
+    public static final String SET_FLOW_ID = "setFlowId";
     private MatiCallbackManager mCallbackManager = MatiCallbackManager.createNew();
     CallbackContext mOnCallback;
     @Override
@@ -57,6 +58,11 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
             case INIT:{
                 String clientId = args.getString(0);
                 this.init(clientId, callbackContext);
+                return true;
+            }
+            case SET_FLOW_ID:{
+                String flowId = args.getString(0);
+                this.setFlowId(flowId);
                 return true;
             }
             case SET_MATI_CALLBACK:{
@@ -158,6 +164,9 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
         mOnCallback.error(pLoginError.getMessage());
     }
 
+    private void setFlowId(final String flowId){
+        mMatiLoginButton.setFlowId(flowId);
+    }
 
     public static class MatiLoginButtonLauncher extends AppCompatActivity
     {
