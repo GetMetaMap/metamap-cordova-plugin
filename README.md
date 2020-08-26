@@ -35,13 +35,12 @@ In your project add a button to trigger the login process.
 
 ### example of html
 
-<input
+    <input
      class="matiButton"
      id="matiButton"
      type="button"
      value="show MFKYC"
-     flowId="5e962a23728ddc001b5937aa"
-   />
+     flowId="5e962a23728ddc001b5937aa"/>
 
 ## Mati SDK initialization
 
