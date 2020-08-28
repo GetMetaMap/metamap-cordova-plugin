@@ -40,6 +40,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
     public static final String INIT = "init";
     public static final String COOL_METHOD = "coolMethod";
     public static final String SET_FLOW_ID = "setFlowId";
+    public static String SPEC_FLOW_ID = "";
     private MatiCallbackManager mCallbackManager = MatiCallbackManager.createNew();
     CallbackContext mOnCallback;
     @Override
@@ -165,7 +166,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
     }
 
     private void setFlowId(final String flowId){
-        mMatiLoginButton.setFlowId(flowId);
+        SPEC_FLOW_ID = flowId;
     }
 
     public static class MatiLoginButtonLauncher extends AppCompatActivity
@@ -192,6 +193,9 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
             layout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT));
             mMatiLoginButton = new MatiLoginButton(this);
+             if (SPEC_FLOW_ID != null) {
+                mMatiLoginButton.mFlowId = SPEC_FLOW_ID;
+            }
             mMatiLoginButton.setVisibility(View.INVISIBLE);
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(100, 100);
             params.setMargins(-100, 0, 0, 0);
