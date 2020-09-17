@@ -41,14 +41,15 @@ Initialize Mati by calling the following line of code:
 ## 1) Ionic
 ### example of html for ionic
 
-    <input
-     class="matiButton"
-     id="matiButton"
-     type="button"
-     value="show MFKYC"
-     flowId="5e962a23728ddc001b5937aa"
-     />
-
+```
+<input
+ class="matiButton"
+ id="matiButton"
+ type="button"
+ value="show MFKYC"
+ ion-item (click)="showMFKYC()"/>
+ ```
+   
 ### ionic sample component
 
     import { Component, NgZone } from "@angular/core";
@@ -104,13 +105,15 @@ Initialize Mati by calling the following line of code:
 ## 2) Cordova
 
 ### example of html for cordova
-
-<input
- class="matiButton"
- id="matiButton"
- type="button"
- value="show MFKYC"
- ion-item (click)="showMFKYC()"/>
+```
+ <input
+     class="matiButton"
+     id="matiButton"
+     type="button"
+     value="show MFKYC"
+     flowId="5e962a23728ddc001b5937aa"
+     />
+ ```
  
 ### cordova in index.js
 
