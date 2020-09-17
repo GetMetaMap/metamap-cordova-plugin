@@ -33,18 +33,21 @@ cordova platform add ios
 
 In your project add a button to trigger the login process.
 
-### example of html
+## Mati SDK initialization
+## Here is two examples for 1) Ionic and for 2) Cordova.
+
+Initialize Mati by calling the following line of code:
+
+## 1) Ionic
+### example of html for ionic
 
     <input
      class="matiButton"
      id="matiButton"
      type="button"
      value="show MFKYC"
-     flowId="5e962a23728ddc001b5937aa"/>
-
-## Mati SDK initialization
-
-Initialize Mati by calling the following line of code:
+     flowId="5e962a23728ddc001b5937aa"
+     />
 
 ### ionic sample component
 
@@ -93,10 +96,22 @@ Initialize Mati by calling the following line of code:
 
       //trigger login on button click
       showMFKYC() {
+	    cordova.plugins.MatiGlobalIDSDK.setFlowId("5eff264acd3000fc");
         cordova.plugins.MatiGlobalIDSDK.showMFKYC();
       }
     }
+    
+## 2) Cordova
 
+### example of html for cordova
+
+<input
+ class="matiButton"
+ id="matiButton"
+ type="button"
+ value="show MFKYC"
+ ion-item (click)="showMFKYC()"/>
+ 
 ### cordova in index.js
 
     cordova.plugins.MatiGlobalIDSDK.init("your client ID here");
