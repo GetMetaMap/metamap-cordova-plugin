@@ -1,6 +1,6 @@
 {
   "name": "mati-global-id-sdk-cordova-plugin",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Mati pluging",
   "cordova": {
     "id": "mati-global-id-sdk-cordova-plugin",
