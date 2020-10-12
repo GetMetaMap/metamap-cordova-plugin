@@ -176,7 +176,7 @@ https://bintray.com/matibiometricskyc/maven/mati-global-id-sdk
 You have to check your project: YourProject/platforms/ios/Podfile
 
 ```
-platform :ios, '9.0'
+platform :ios, '11.4'
 target 'demoCordovaMati' do
     pod 'Mati-Global-ID-SDK'
 end
