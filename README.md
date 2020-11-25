@@ -149,6 +149,8 @@ In the IOS platform find the Podfile file. The targeted OS version should be a m
 
 The following permissions are needed to capture video and access the photo gallery.
 
+For voiceliveness feature please add NSMicrophoneUsageDescription
+
 ###Info.plist
 
 ```
@@ -156,6 +158,8 @@ The following permissions are needed to capture video and access the photo galle
 <string>Mati needs access to your Camera</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>Mati needs access to your media library</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Mati needs access to your Microphone</string>
 ```
 ##Make sure that you are using the latest version our sdk
 
