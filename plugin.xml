@@ -23,12 +23,12 @@
    <platform name="ios">
       <dependency id="cordova-plugin-cocoapod-support"/>
       <config-file parent="/*" target="config.xml">
-         <feature name="MatiGlobalIDSDK">
-            <param name="ios-package" value="MatiGlobalIDSDK" />
+         <feature name="MatiSDK">
+            <param name="ios-package" value="MatiSDK" />
             <param name="onload" value="true" />
          </feature>
       </config-file>
-      <source-file src="src/ios/MatiGlobalIDSDK.m" />
+      <source-file src="src/ios/MatiSDK.m" />
       <pod name="Mati-Global-ID-SDK" />
    </platform>
 </plugin>

@@ -1,23 +1,21 @@
-/********* MatiGlobalIDSDK.m Cordova Plugin Implementation *******/
+/********* MatiSDK.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
-#import <MatiGlobalIDSDK/MatiGlobalIDSDK.h>
+#import <MatiSDK/MatiSDK.h>
 
-@interface MatiGlobalIDSDK : CDVPlugin <MFKYCDelegate>{
+@interface MatiSDK : CDVPlugin <MatiButtonResultDelegate>{
     // Member variables go here.
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
-- (void)init:(CDVInvokedUrlCommand*)command;
+- (void)setParams:(CDVInvokedUrlCommand*)command;
 - (void)setMatiCallback:(CDVInvokedUrlCommand*)command;
-- (void)metadata:(CDVInvokedUrlCommand*)command;
-- (void)showMFKYC:(CDVInvokedUrlCommand*)command;
-- (void)setFlowId:(CDVInvokedUrlCommand*)command;
+- (void)showFlow:(CDVInvokedUrlCommand*)command;
 @end
 
-@implementation MatiGlobalIDSDK{
+@implementation MatiSDK {
     CDVInvokedUrlCommand* setMatiCallbackCDVInvokedUrlCommand;
-    MFKYCButton* matiButton;
+    MatiButton* matiButton;
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
@@ -34,61 +32,48 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)init:(CDVInvokedUrlCommand*)command
+- (void)setParams:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* clientId = [command.arguments objectAtIndex:0];
-    [MFKYC registerWithClientId:clientId metadata:nil];
+    NSString* flowId = [command.arguments objectAtIndex:1];
+    NSDictionary* metaData = [command.arguments objectAtIndex:2];
+
+    self.matiButton = [[MatiButton alloc] init];
+    [self.matiButton setParamsWithClientId: clientId flowId: flowId metadata: metaData];
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    
-    matiButton = [[MFKYCButton alloc] init];
-    matiButton.frame = CGRectMake(-320, 20, 320, 60);//you can change position,width an height
-  
-    matiButton.title = @"Custom Title";
-    matiButton.tag = 100;
-    [self.webView addSubview:matiButton];
-    
-}
-
-- (void)setFlowId:(CDVInvokedUrlCommand*)command
-{
-    NSString* flowId = [command.arguments objectAtIndex:0];
-    matiButton.flowId = flowId;
+        self.matiButton.frame = CGRectMake(20, self.view.frame.size.height/2 - 25, self.view.frame.size.width - 40, 50);
+    self.matiButton.center = self.view.center;
+    self.matiButton.tag = 100;
+    self.matiButton.title = @"Custom Title";
+    [self.view addSubview:self.matiButton];
 }
 
 - (void)setMatiCallback:(CDVInvokedUrlCommand*)command
 {
     setMatiCallbackCDVInvokedUrlCommand = command;
-    [MFKYC instance].delegate = self;
+    [MatiButtonResult shared].delegate = self;
 }
 
-- (void)mfKYCLoginSuccessWithIdentityId:(NSString *)identityId {
-    if(setMatiCallbackCDVInvokedUrlCommand != nil){
+-(void)verificationSuccessWithIdentityId:(NSString *)identityId {
+      if(setMatiCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:identityId];
         [pluginResult setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
-- (void)mfKYCLoginCancelled {
-    if(setMatiCallbackCDVInvokedUrlCommand != nil){
+- (void)verificationCancelled {
+     if(setMatiCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"Cancel"];
         [pluginResult setKeepCallbackAsBool:YES];
          [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
-- (void)metadata:(CDVInvokedUrlCommand*)command
-{
-    NSDictionary* metadata = [command.arguments objectAtIndex:0];
-    [MFKYC instance].metadata = metadata;
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (void)showMFKYC:(CDVInvokedUrlCommand*)command
+- (void)showFlow:(CDVInvokedUrlCommand*)command
 {
     if(matiButton != nil){
         [matiButton sendActionsForControlEvents:UIControlEventTouchUpInside];

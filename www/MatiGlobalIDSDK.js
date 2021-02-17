@@ -4,22 +4,15 @@ exports.coolMethod = function(arg0, success, error) {
   exec(success, error, "MatiGlobalIDSDK", "coolMethod", [arg0]);
 };
 
-exports.init = function(arg0, success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "init", [arg0]);
+exports.setParams = function(arg0, success, error) {
+  exec(success, error, "MatiGlobalIDSDK", "setParams", [arg0]);
 };
 
 exports.setMatiCallback = function(success, error) {
   exec(success, error, "MatiGlobalIDSDK", "setMatiCallback", []);
 };
 
-exports.metadata = function(arg0, success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "metadata", [arg0]);
+exports.showFlow = function(success, error) {
+  exec(success, error, "MatiGlobalIDSDK", "showFlow", []);
 };
 
-exports.showMFKYC = function(success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "showMFKYC", []);
-};
-
-exports.setFlowId = function(arg0, success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "setFlowId", [arg0]);
-};

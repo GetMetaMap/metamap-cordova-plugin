@@ -1,7 +1,7 @@
 {
   "name": "mati-global-id-sdk-cordova-plugin",
-  "version": "0.0.4",
-  "description": "Mati pluging",
+  "version": "0.0.5",
+  "description": "Mati SDK plugin",
   "cordova": {
     "id": "mati-global-id-sdk-cordova-plugin",
     "platforms": [
@@ -15,8 +15,8 @@
     "cordova-android",
     "cordova-ios"
   ],
-  "author": "Joseph",
-  "license": "ISC",
+  "author": "Andrey Posnov",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {}
 }
