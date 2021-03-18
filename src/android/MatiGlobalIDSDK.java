@@ -1,82 +1,62 @@
 package com.cordova.plugin.matiglobalidsdk;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.FrameLayout;
-
-import com.matilock.mati_kyc_sdk.LoginError;
-import com.matilock.mati_kyc_sdk.LoginResult;
-import com.matilock.mati_kyc_sdk.Mati;
-import com.matilock.mati_kyc_sdk.MatiCallback;
-import com.matilock.mati_kyc_sdk.MatiCallbackManager;
-import com.matilock.mati_kyc_sdk.MatiLoginButton;
-import com.matilock.mati_kyc_sdk.MatiLoginManager;
+import android.util.Log;
+import androidx.annotation.Nullable;
+import com.matilock.mati_kyc_sdk.MatiButton;
 import com.matilock.mati_kyc_sdk.Metadata;
-
+import com.matilock.mati_kyc_sdk.kyc.KYCActivity;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.ref.WeakReference;
 import java.util.Iterator;
 
 /**
  * This class echoes a string called from JavaScript.
  */
-public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
+public class MatiGlobalIDSDK extends CordovaPlugin  {
 
-    public static final String CANCEL = "Cancel";
-    public static final String SHOW_MFKYC = "showMFKYC";
-    public static final String METADATA = "metadata";
+    public static final String SHOW_MATIFLOW = "showMatiFlow";
     public static final String SET_MATI_CALLBACK = "setMatiCallback";
-    public static final String INIT = "init";
+    public static final String SET_PARAMS = "setParams";
     public static final String COOL_METHOD = "coolMethod";
-    public static final String SET_FLOW_ID = "setFlowId";
-    public static String SPEC_FLOW_ID = "";
-    private MatiCallbackManager mCallbackManager = MatiCallbackManager.createNew();
+    private MatiButton matiButton;
     CallbackContext mOnCallback;
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-//        if (action.equals("coolMethod")) {
-//            String message = args.getString(0);
-//            this.coolMethod(message, callbackContext);
-//            return true;
-//        }
         switch (action){
             case COOL_METHOD:{
                 String message = args.getString(0);
                 this.coolMethod(message, callbackContext);
                 return true;
             }
-            case INIT:{
-                String clientId = args.getString(0);
-                this.init(clientId, callbackContext);
-                return true;
-            }
-            case SET_FLOW_ID:{
-                String flowId = args.getString(0);
-                this.setFlowId(flowId);
-                return true;
+            case SET_PARAMS:{
+                String clientId = null;
+                String flowId = null;
+                JSONObject metadata = null;
+                if (args != null) {
+                    JSONObject params = args.getJSONObject(0);
+                    clientId = params.getString("clientId");
+                    flowId = params.optString("flowId");
+                    metadata = params.optJSONObject("metadata");
+                    this.setParams(clientId,flowId,metadata, callbackContext);
+                    return true;
+                } else {
+                    Log.e("Integration error", "Please set yours Mati client ID");
+                    return true;
+                }
             }
             case SET_MATI_CALLBACK:{
                 this.setMatiCallback(callbackContext);
                 return true;
             }
-            case METADATA:{
-                JSONObject metadata = args.getJSONObject(0);
-                this.metadata(metadata, callbackContext);
-                return true;
-            }
-            case SHOW_MFKYC:{
-                this.showMFKYC(callbackContext);
+            case SHOW_MATIFLOW:{
+                this.showMatiFlow(callbackContext);
                 return true;
             }
         }
@@ -91,24 +71,36 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
         }
     }
 
-
-    private void init(final String clientId,  CallbackContext callbackContext) {
+    private void setParams(final String clientId, @Nullable final String flowId , @Nullable final JSONObject metadata, CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Mati.init(cordova.getActivity(), clientId);
-                MatiLoginManager.getInstance().registerCallback(mCallbackManager, MatiGlobalIDSDK.this);
-
+                matiButton = new MatiButton(cordova.getContext(), null);
+                matiButton.setParams(clientId,
+                        flowId,
+                        "Default flow",
+                        convertToMetadata(metadata));
                 callbackContext.success();
             }
         });
     }
 
-    private void showMFKYC(CallbackContext callbackContext){
+    private void showMatiFlow(CallbackContext callbackContext){
+        if (matiButton.getVm().getValue() != null) {
+            MatiButton.State matiState = matiButton.getVm().getValue();
+            MatiButton.SuccessState matiSuccess = (MatiButton.SuccessState) matiState;
 
-        MatiLoginButtonLauncher.weakReferenceCallbackManager = new WeakReference<>(mCallbackManager);
-        Intent intent = new Intent(cordova.getActivity(), MatiGlobalIDSDK.MatiLoginButtonLauncher.class);
-        cordova.getActivity().startActivity(intent);
+            Intent intent = new Intent(cordova.getContext(), KYCActivity.class);
+            intent.putExtra("ARG_ID_TOKEN", matiSuccess.getIdToken());
+            intent.putExtra("ARG_CLIENT_ID", matiSuccess.getClientId());
+            intent.putExtra("ARG_VERIFICATION_ID", matiSuccess.getVerificationId());
+            intent.putExtra("ARG_ACCESS_TOKEN", matiSuccess.getAccessToken());
+            intent.putExtra("ARG_VOICE_TXT", matiSuccess.getVoiceDataTxt());
+            intent.putExtra("STATE_LANGUAGE_ID", matiSuccess.getIdToken());
+            cordova.getActivity().startActivityForResult(intent, KYCActivity.REQUEST_CODE);
+        } else {
+            Log.e("Loading error", "Please check yours Mati client ID or internet connection");
+        }
         callbackContext.success();
     }
 
@@ -116,11 +108,25 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
         mOnCallback = callbackContext;
     }
 
-    public void metadata(final JSONObject metadata, final  CallbackContext callbackContext)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == KYCActivity.REQUEST_CODE) {
+            if(resultCode == KYCActivity.RESULT_OK) {
+                PluginResult result = new PluginResult(PluginResult.Status.OK);
+                result.setKeepCallback(true);
+                mOnCallback.sendPluginResult(result);
+            } else {
+                PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Verification cancelled");
+                result.setKeepCallback(true);
+                mOnCallback.sendPluginResult(result);
+            }
+        }
+    }
+
+    public Metadata convertToMetadata(final JSONObject metadata)
     {
-        cordova.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        if (metadata == null)
+            return null;
 
                 Metadata.Builder metadataBuilder = new Metadata.Builder();
                 Iterator<String> keys = metadata.keys();
@@ -133,88 +139,6 @@ public class MatiGlobalIDSDK extends CordovaPlugin implements MatiCallback {
                         e.printStackTrace();
                     }
                 }
-                Mati.getInstance().setMetadata(metadataBuilder.build());
-                callbackContext.success();
-            }
-        });
+        return metadataBuilder.build();
     }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        mCallbackManager.onActivityResult(requestCode, resultCode, intent);
-//    }
-
-
-    @Override
-    public void onSuccess(LoginResult pLoginResult) {
-        PluginResult result = new PluginResult(PluginResult.Status.OK, pLoginResult.getIdentityId());
-        result.setKeepCallback(true);
-        mOnCallback.sendPluginResult(result);
-    }
-
-    @Override
-    public void onCancel() {
-        PluginResult result = new PluginResult(PluginResult.Status.ERROR, CANCEL);
-        result.setKeepCallback(true);
-        mOnCallback.sendPluginResult(result);
-    }
-
-
-    @Override
-    public void onError(LoginError pLoginError) {
-        mOnCallback.error(pLoginError.getMessage());
-    }
-
-    private void setFlowId(final String flowId){
-        SPEC_FLOW_ID = flowId;
-    }
-
-    public static class MatiLoginButtonLauncher extends AppCompatActivity
-    {
-        public static WeakReference<MatiCallbackManager> weakReferenceCallbackManager;
-        Handler mMainHandler ;
-        MatiLoginButton mMatiLoginButton;
-        @Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(getView());
-            mMainHandler = new Handler(this.getMainLooper());
-            mMainHandler.post (new Runnable() {
-                @Override
-                public void run() {
-                    mMatiLoginButton.performClick();
-                }
-            });
-
-        }
-
-        public View getView(){
-            FrameLayout layout = new FrameLayout(this);
-            layout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT));
-            mMatiLoginButton = new MatiLoginButton(this);
-             if (SPEC_FLOW_ID != null) {
-                mMatiLoginButton.mFlowId = SPEC_FLOW_ID;
-            }
-            mMatiLoginButton.setVisibility(View.INVISIBLE);
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(100, 100);
-            params.setMargins(-100, 0, 0, 0);
-            mMatiLoginButton.setLayoutParams(params);
-            layout.addView(mMatiLoginButton);
-
-            return layout;
-        }
-
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if(weakReferenceCallbackManager != null && weakReferenceCallbackManager.get() != null){
-                if(weakReferenceCallbackManager.get().onActivityResult(requestCode, resultCode, data)){
-                    this.finish();
-                }
-            }
-
-        }
-    }
-
 }

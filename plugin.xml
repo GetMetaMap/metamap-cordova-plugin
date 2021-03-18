@@ -22,6 +22,8 @@
    </platform>
    <platform name="ios">
       <dependency id="cordova-plugin-cocoapod-support"/>
+      <pods-config ios-min-version="11.4" use-frameworks="true">
+      </pods-config>
       <config-file parent="/*" target="config.xml">
          <feature name="MatiSDK">
             <param name="ios-package" value="MatiSDK" />

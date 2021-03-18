@@ -1,18 +1,17 @@
-var exec = require("cordova/exec");
+   var exec = require("cordova/exec");
 
-exports.coolMethod = function(arg0, success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "coolMethod", [arg0]);
-};
+    exports.coolMethod = function(arg0, success, error) {
+      exec(success, error, "MatiGlobalIDSDK", "coolMethod", [arg0]);
+    };
 
-exports.setParams = function(arg0, success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "setParams", [arg0]);
-};
+    exports.setParams = function(arg0, success, error) {
+      exec(success, error, "MatiGlobalIDSDK", "setParams", [arg0]);
+    };
 
-exports.setMatiCallback = function(success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "setMatiCallback", []);
-};
-
-exports.showFlow = function(success, error) {
-  exec(success, error, "MatiGlobalIDSDK", "showFlow", []);
-};
-
+    exports.showMatiFlow = function(success, error) {
+      exec(success, error, "MatiGlobalIDSDK", "showMatiFlow", []);
+    };
+    
+    exports.setMatiCallback = function(success, error) {
+      exec(success, error, "MatiGlobalIDSDK", "setMatiCallback", []);
+    };
