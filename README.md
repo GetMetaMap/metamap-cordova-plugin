@@ -94,7 +94,10 @@ end
 Check this for latest version: 
 https://cocoapods.org/pods/Mati-Global-ID-SDK
 
+# Please see cordovaDemoApp folder for example
+cordovaDemoApp
 
+## Have any questions? Feel free create issue here.
 
 
 
