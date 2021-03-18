@@ -5,104 +5,14 @@ Add the SDK plugin with the following command
 
 cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
 
-## Add Android Platform
-
-Add to Android platform to project
-
-### ionic command
-
-ionic cordova prepare android
-
-### cordova command
-
-cordova platform add android
-
-## Add IOS Platform
-
-Add to IOS platform to project
-
-### ionic command
-
-ionic cordova prepare ios
-
-### cordova command
-
-cordova platform add ios
-
 ## Create html
 
 In your project add a button to trigger the login process.
 
 ## Mati SDK initialization
-## Here is two examples for 1) Ionic and for 2) Cordova.
+## Cordova.
 
 Initialize Mati by calling the following line of code:
-
-## 1) Ionic
-### example of html for ionic
-
-```
-<input
- class="matiButton"
- id="matiButton"
- type="button"
- value="show MFKYC"
- ion-item (click)="showMFKYC()"/>
- ```
-   
-### ionic sample component
-
-    import { Component, NgZone } from "@angular/core";
-    import { Platform } from "@ionic/angular";
-
-    //global instance of cordova
-    declare var cordova: any;
-
-    @Component({
-      selector: "app-home",
-      templateUrl: "home.page.html",
-      styleUrls: ["home.page.scss"]
-    })
-    export class HomePage {
-      yourLabelVariable: string = "No Status";
-
-      constructor(public platform: Platform, zone: NgZone) {
-        platform.ready().then(() => {
-          //init sdk
-          cordova.plugins.MatiGlobalIDSDK.init("5dc09bd3047ea0001c4b20ba");
-
-          //Send metadata
-          cordova.plugins.MatiGlobalIDSDK.metadata({ key: "value" });
-
-          //register to login callback
-          cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
-            identityId => {
-              console.log("setMatiCallback success: " + identityId);
-
-              zone.run(() => {
-                this.yourLabelVariable = "setMatiCallback success: " + identityId;
-              });
-            },
-            error => {
-              console.log("setMatiCallback error: " + error);
-
-              //Run code on Angular zone to update UI
-              zone.run(() => {
-                this.yourLabelVariable = "setMatiCallback error: " + error;
-              });
-            }
-          );
-        });
-      }
-
-      //trigger login on button click
-      showMFKYC() {
-	    cordova.plugins.MatiGlobalIDSDK.setFlowId("5eff264acd3000fc");
-        cordova.plugins.MatiGlobalIDSDK.showMFKYC();
-      }
-    }
-    
-## 2) Cordova
 
 ### example of html for cordova
 ```
@@ -110,38 +20,34 @@ Initialize Mati by calling the following line of code:
      class="matiButton"
      id="matiButton"
      type="button"
-     value="show MFKYC"
-     flowId="5e962a23728ddc001b5937aa"
+     value="show Mati Flow"
      />
  ```
  
-### cordova in index.js
+### example of index.js for cordova
 
-    cordova.plugins.MatiGlobalIDSDK.init("your client ID here");
+ ```    
+//set 3 params clientId (cant be null), flowId, metadata 
+var matiParams = { clientId: "YOURS_CLIENT_ID", flowId: "YOURS_FLOW_ID", metadata: YOURS_METADATA }
+cordova.plugins.MatiGlobalIDSDK.setParams(matiParams);
+ 
+//set trigger login on button click
+var matiButton = document.getElementById("matiButton");
 
-    //Send metadata
-    cordova.plugins.MatiGlobalIDSDK.metadata({ key: "value" });
+matiButton.onclick = () => {
+  cordova.plugins.MatiGlobalIDSDK.showMatiFlow();
+};
 
-    //register to login callback
-    cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
-      identityId => {
-        console.log("setMatiCallback success: " + identityId);
-      },
-      error => {
-        console.log("setMatiCallback error: " + error);
-      }
-    );
-
-    //trigger login on button click
-    var matiButton = document.getElementById("your button id");
-    
-    //if you need specify flow set flowId attribute to button in html
-    var flowId = matiButton.getAttribute("flowId");
-    cordova.plugins.MatiGlobalIDSDK.setFlowId(flowId);
-    
-    matiButton.onclick = () => {
-      cordova.plugins.MatiGlobalIDSDK.showMFKYC();
-    };
+//register to callback
+cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
+  identityId => {
+    console.log("setMatiCallback success: " + identityId);
+  },
+  error => {
+    console.log("setMatiCallback error: " + error);
+  }
+);
+ ```
 
 ##IOS build
 
@@ -187,6 +93,7 @@ end
 ```
 Check this for latest version: 
 https://cocoapods.org/pods/Mati-Global-ID-SDK
+
 
 
 
