@@ -57,7 +57,7 @@ The following permissions are needed to capture video and access the photo galle
 
 For voiceliveness feature please add NSMicrophoneUsageDescription
 
-###Info.plist
+### Info.plist
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -67,9 +67,9 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 <key>NSMicrophoneUsageDescription</key>
 <string>Mati needs access to your Microphone</string>
 ```
-##Make sure that you are using the latest version our sdk
+### Make sure that you are using the latest version our sdk
 
-#Android
+# Android
 
 You have to check your project: YourProject/platforms/android/mati-global-id-sdk-cordova-plugin/demoCordovaMati-build.gradle
 
@@ -81,7 +81,14 @@ implementation 'com.matilock:mati-global-id-sdk:HERE_IS_LATEST_VERSION'
 Check this for latest version: 
 https://bintray.com/matibiometricskyc/maven/mati-global-id-sdk
 
-#iOS
+### Change public class CordovaActivity
+ CordovaActivity extends AppCompatActivity 
+ 
+### Set AndroidX support to true 
+android.useAndroidX=true
+android.enableJetifier=true
+
+# iOS
 
 You have to check your project: YourProject/platforms/ios/Podfile
 
