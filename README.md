@@ -137,7 +137,6 @@ For voiceliveness feature please add NSMicrophoneUsageDescription
 ### Make sure that you are using the latest version our sdk
 
 ## Android
-
 You have to check your project: YourProject/platforms/android/mati-global-id-sdk-cordova-plugin/demoCordovaMati-build.gradle
 
 ```
@@ -147,6 +146,7 @@ implementation 'com.matilock:mati-global-id-sdk:HERE_IS_LATEST_VERSION'
 ```
 Check this for latest version: 
 https://bintray.com/matibiometricskyc/maven/mati-global-id-sdk
+
 
 ## Please change public class CordovaActivity.java
 Before CordovaActivity.java
@@ -180,5 +180,9 @@ end
 Check this for latest version: 
 https://cocoapods.org/pods/Mati-Global-ID-SDK
 
+# Please see cordovaDemoApp folder for example
+cordovaDemoApp
 
 ## Have any questions? Feel free create issue here.
+
+
