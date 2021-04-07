@@ -28,7 +28,8 @@ console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
 document.getElementById('deviceready').classList.add('ready');
 
 //set 3 params clientId (cant be null), flowId, metadata 
-var matiParams = { clientId: "YOURS_CLIENT_ID", flowId: "YOURS_FLOW_ID", metadata: YOURS_METADATA }
+var yourMetadata = { param1: "value1", param2: "value2" }
+var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
 cordova.plugins.MatiGlobalIDSDK.setParams(matiParams);
  
 //trigger login on button click

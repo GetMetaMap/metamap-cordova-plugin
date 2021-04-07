@@ -1,7 +1,0 @@
-{
-  "name": "demoIonicStart",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
