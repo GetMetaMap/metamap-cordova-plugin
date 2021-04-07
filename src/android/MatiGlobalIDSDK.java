@@ -117,7 +117,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == KYCActivity.REQUEST_CODE) {
             if(resultCode == KYCActivity.RESULT_OK) {
-                PluginResult result = new PluginResult(PluginResult.Status.OK);
+                 PluginResult result = new PluginResult(PluginResult.Status.OK, data.getStringExtra(KYCActivity.ARG_VERIFICATION_ID));
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             } else {
