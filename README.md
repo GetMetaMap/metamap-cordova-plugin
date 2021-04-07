@@ -1,5 +1,5 @@
 # Cordova&Ionic plugin for Mati SDK
-
+## Recommended version of Cordova is 10. (minimum is 6.X+).
 Create a new Cordova project or Ionic project
 Add the SDK plugin with the following command
 
