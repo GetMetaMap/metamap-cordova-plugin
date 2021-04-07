@@ -15,7 +15,6 @@
       <source-file src="src/android/MatiGlobalIDSDK.java" target-dir="src/com/cordova/plugin/matiglobalidsdk" />
       <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
       <config-file target="AndroidManifest.xml" parent="/manifest/application">
-        </activity>
       </config-file>
    </platform>
    <platform name="ios">
