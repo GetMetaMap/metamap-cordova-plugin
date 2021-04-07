@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
+		0BF99D7FB74274076102E77E /* Pods_cordovaDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104A14C598191176242E5A5B /* Pods_cordovaDemoApp.framework */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -15,7 +16,6 @@
 		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
 		4323E8A4C20D4DF98634C203 /* MatiGlobalIDSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9B50CB004CA8BA6F7325 /* MatiGlobalIDSDK.m */; };
 		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
-		8CE7B42258B9A2383CB7C2D6 /* libPods-cordovaDemoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 126281B6CEC79A84A3A2DBA1 /* libPods-cordovaDemoApp.a */; };
 		E792AB132602639700347BDC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792AB122602639700347BDC /* File.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = cordovaDemoApp/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		126281B6CEC79A84A3A2DBA1 /* libPods-cordovaDemoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cordovaDemoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		104A14C598191176242E5A5B /* Pods_cordovaDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cordovaDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* cordovaDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cordovaDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
-				8CE7B42258B9A2383CB7C2D6 /* libPods-cordovaDemoApp.a in Frameworks */,
+				0BF99D7FB74274076102E77E /* Pods_cordovaDemoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+		29B97314FDCFA39411CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				E792AB122602639700347BDC /* File.swift */,
@@ -161,7 +161,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				126281B6CEC79A84A3A2DBA1 /* libPods-cordovaDemoApp.a */,
+				104A14C598191176242E5A5B /* Pods_cordovaDemoApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 				en,
 				Base,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (

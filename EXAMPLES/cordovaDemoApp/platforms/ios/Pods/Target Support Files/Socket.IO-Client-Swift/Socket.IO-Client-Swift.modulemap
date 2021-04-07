@@ -1,4 +1,4 @@
-module SocketIO {
+framework module SocketIO {
   umbrella header "Socket.IO-Client-Swift-umbrella.h"
 
   export *

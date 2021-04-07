@@ -1,4 +1,4 @@
-module Pods_cordovaDemoApp {
+framework module Pods_cordovaDemoApp {
   umbrella header "Pods-cordovaDemoApp-umbrella.h"
 
   export *
