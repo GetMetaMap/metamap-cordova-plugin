@@ -1,0 +1,11 @@
+{
+	"pods": {
+		"Mati-Global-ID-SDK": {
+			"type": "pod",
+			"name": "Mati-Global-ID-SDK"
+		}
+	},
+	"sources": {},
+	"iosMinVersion": "7.0",
+	"useFrameworks": false
+}
