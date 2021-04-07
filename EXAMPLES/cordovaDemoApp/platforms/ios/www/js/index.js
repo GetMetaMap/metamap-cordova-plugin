@@ -29,7 +29,7 @@ document.getElementById('deviceready').classList.add('ready');
 
 //set 3 params clientId (cant be null), flowId, metadata 
 var yourMetadata = { param1: "value1", param2: "value2" }
-var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
+var matiParams = { clientId: "5c94e3c401ddc6001be83c07", flowId: null, metadata: yourMetadata }
 cordova.plugins.MatiGlobalIDSDK.setParams(matiParams);
  
 //trigger login on button click
