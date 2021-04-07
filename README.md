@@ -118,11 +118,11 @@ You have to check your project: YourProject/platforms/android/mati-global-id-sdk
 
 ```
 dependencies {
-implementation 'com.matilock:mati-global-id-sdk:HERE_IS_LATEST_VERSION'
+implementation 'com.getmati:mati-sdk:HERE_IS_LATEST_VERSION'
 }
 ```
 Check this for latest version: 
-https://bintray.com/matibiometricskyc/maven/mati-global-id-sdk
+https://search.maven.org/artifact/com.getmati/mati-sdk
 
 
 ## Please change public class CordovaActivity.java
