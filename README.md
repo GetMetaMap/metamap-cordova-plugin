@@ -53,7 +53,7 @@ cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
  ```
  
 ## Please see cordovaDemoApp folder for example on Cordova
-cordovaDemoApp
+https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp
 
 # Ionic.
 
@@ -178,8 +178,8 @@ end
 Check this for latest version: 
 https://cocoapods.org/pods/Mati-Global-ID-SDK
 
-# Please see cordovaDemoApp folder for example
-cordovaDemoApp
+# Please see cordovaIonicDemoApp folder for example
+https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp
 
 ## Have any questions? Feel free create issue here.
 
