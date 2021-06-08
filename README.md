@@ -105,8 +105,8 @@ export class HomePage {
 }
  ```
  
-## Please see demoIonicStart folder for example on Ionic
-demoIonicStart
+## Please see cordovaIonicDemoApp folder for example on Ionic
+https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp
 
 # Additional info
 
