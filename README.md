@@ -84,11 +84,6 @@ export class HomePage {
   constructor() {}
   
   ionViewDidEnter() {
-    
-    //set 3 params clientId (cant be null), flowId, metadata 
-    var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: YOUR_METADATA }
-    cordova.plugins.MatiGlobalIDSDK.setParams(matiParams);
-
     //register to callback
     cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
       identityId => {
@@ -101,7 +96,10 @@ export class HomePage {
   }
 
   showMatiFlow() {
-    cordova.plugins.MatiGlobalIDSDK.showMatiFlow();
+   //set 3 params clientId (cant be null), flowId, metadata 
+   var yourMetadata = { param1: "value1", param2: "value2" }
+    var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
+    cordova.plugins.MatiGlobalIDSDK.showMatiFlow(matiParams);
   }
 
 }
