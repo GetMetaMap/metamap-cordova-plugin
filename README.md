@@ -3,8 +3,8 @@
 Create a new Cordova project or Ionic project
 Add the SDK plugin with the following command
 
-cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
-
+INSTALL: cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
+UNINSTALL: cordova plugin remove mati-global-id-sdk-cordova-plugin
 
 # Cordova.
 
@@ -27,27 +27,26 @@ In your project add a button to trigger the login process.
 
  ```    
 function onDeviceReady() {
-
-//set 3 params clientId (cant be null), flowId, metadata 
-var matiParams = { clientId: "YOURS_CLIENT_ID", flowId: "YOURS_FLOW_ID", metadata: YOURS_METADATA }
-cordova.plugins.MatiGlobalIDSDK.setParams(matiParams);
  
 //trigger login on button click
 var matiButton = document.getElementById("matiButton");
 
-matiButton.onclick = () => {
-  cordova.plugins.MatiGlobalIDSDK.showMatiFlow();
-};
+  matiButton.onclick = () => {
+      //set 3 params clientId (cant be null), flowId, metadata
+      var yourMetadata = { param1: "value1", param2: "value2" }
+      var matiButtinParams = { clientId: "YOUR_FLOW_ID", flowId: "", metadata: yourMetadata }
+      cordova.plugins.MatiGlobalIDSDK.showMatiFlow(matiButtinParams)
+    };
 
-//register to callback
-cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
-  identityId => {
-    console.log("setMatiCallback success: " + identityId);
-  },
-  error => {
-    console.log("setMatiCallback error: " + error);
-  }
-);
+    //register to callback
+    cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
+     identityId => {
+       console.log("setMatiCallback success: " + identityId);
+     },
+     error => {
+       console.log("setMatiCallback error: " + error);
+     }
+    );
 
 }
  ```
@@ -124,25 +123,11 @@ implementation 'com.getmati:mati-sdk:HERE_IS_LATEST_VERSION'
 Check this for latest version: 
 https://search.maven.org/artifact/com.getmati/mati-sdk
 
-
-## Please change public class CordovaActivity.java
-Before CordovaActivity.java
- ```
-public class CordovaActivity extends Activity {
-```
-After CordovaActivity.java
-```
-public class CordovaActivity extends AppCompatActivity {
-```
-Changes in manifest, please set theme to MainActivity
-```
- android:theme="@style/Theme.AppCompat" 
-```
  
-### Set AndroidX support to true 
-android.useAndroidX=true
-
-android.enableJetifier=true
+### Set AndroidX support into config.xml for cordova project
+<platform name="android">
+	<preference name="AndroidXEnabled" value="true" />
+</platform>
 
 ### iOS
 

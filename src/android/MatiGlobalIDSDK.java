@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.Nullable;
 
-import com.getmati.mati_sdk.MatiButton;
 import com.getmati.mati_sdk.Metadata;
 import com.getmati.mati_sdk.MatiSdk;
 
@@ -24,7 +23,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
 
     public static final String SHOW_MATIFLOW = "showMatiFlow";
     public static final String COOL_METHOD = "coolMethod";
-    private MatiButton matiButton;
+    public static final String SET_CALLBACK = "setMatiCallback";
     CallbackContext mOnCallback;
 
     @Override
@@ -51,6 +50,10 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
                     return true;
                 }
             }
+            case SET_CALLBACK:{
+                mOnCallback = callbackContext;
+                return true;
+            }
         }
         return false;
     }
@@ -64,18 +67,16 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
     }
 
     private void showMatiFlow(final String clientId, @Nullable final String flowId , @Nullable final JSONObject metadata, CallbackContext callbackContext) {
-        cordova.getActivity().runOnUiQueueThread(new Runnable() {
-            @Override
+        cordova.setActivityResultCallback(this);
+        cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 MatiSdk.INSTANCE.startFlow(cordova.getActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                mOnCallback = callbackContext;
                 callbackContext.success();
             }
         });
-        callbackContext.success();
     }
 
     @Override
