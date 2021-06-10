@@ -8,7 +8,6 @@
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
-- (void)setParams:(CDVInvokedUrlCommand*)command;
 - (void)showMatiFlow:(CDVInvokedUrlCommand*)command;
 - (void)setMatiCallback:(CDVInvokedUrlCommand*)command;
 
@@ -18,7 +17,6 @@
 
 @implementation MatiGlobalIDSDK{
     CDVInvokedUrlCommand* setMatiCallbackCDVInvokedUrlCommand;
-    MatiButton* matiButton;
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
@@ -35,7 +33,8 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)setParams:(CDVInvokedUrlCommand*)command
+
+- (void)showMatiFlow:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* clientId = nil;
@@ -62,14 +61,15 @@
             metadata = [options objectForKey:@"metadata"];
         }
     
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [MatiSDK.shared showMatiFlowWithClientId: clientId flowId: flowId metadata: metadata];
+            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        });
+        
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            self->matiButton = [[MatiButton alloc] init];
-            [self->matiButton setParamsWithClientId: clientId flowId: flowId metadata: metadata];
-        
-        });
     } else {
         NSLog(@"Please set yours Mati client ID");
     }
@@ -97,18 +97,5 @@
     }
 }
 
-
-- (void)showMatiFlow:(CDVInvokedUrlCommand*)command
-{
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        if(self->matiButton != nil){
-            [self->matiButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-        }
-    });
-   
-}
 
 @end
