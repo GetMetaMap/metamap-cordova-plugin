@@ -56,6 +56,9 @@ var matiButton = document.getElementById("matiButton");
 https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp
 
 # Ionic.
+INSTALL: ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
+
+UNINSTALL: ionic cordova plugin remove mati-global-id-sdk-cordova-plugin
 
 ### example of html for Ionic
 ```
