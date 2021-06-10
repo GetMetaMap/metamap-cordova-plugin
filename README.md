@@ -4,6 +4,7 @@ Create a new Cordova project or Ionic project
 Add the SDK plugin with the following command
 
 INSTALL: cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
+
 UNINSTALL: cordova plugin remove mati-global-id-sdk-cordova-plugin
 
 # Cordova.
