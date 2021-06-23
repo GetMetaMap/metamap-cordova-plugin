@@ -128,7 +128,8 @@ https://search.maven.org/artifact/com.getmati/mati-sdk
  
 ### Set AndroidX support into config.xml for cordova project
 
-```<platform name="android">
+```
+<platform name="android">
 	<preference name="AndroidXEnabled" value="true" />
 </platform>
 ```
