@@ -127,10 +127,12 @@ https://search.maven.org/artifact/com.getmati/mati-sdk
 
  
 ### Set AndroidX support into config.xml for cordova project
+
+```
 <platform name="android">
 	<preference name="AndroidXEnabled" value="true" />
 </platform>
-
+```
 ### iOS
 
 In the IOS platform find the Podfile file. 
