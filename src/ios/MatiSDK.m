@@ -62,7 +62,7 @@
         }
     
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [MatiSDK.shared showMatiFlowWithClientId: clientId flowId: flowId metadata: metadata];
+            [Mati.shared showMatiFlowWithClientId: clientId flowId: flowId metadata: metadata];
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         });
