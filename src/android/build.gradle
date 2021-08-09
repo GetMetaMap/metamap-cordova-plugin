@@ -3,5 +3,5 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.getmati:mati-sdk:3.7.11'
+    implementation 'com.getmati:mati-sdk:3.8.0'
 }
