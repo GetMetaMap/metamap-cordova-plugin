@@ -18,7 +18,7 @@ _**Note**_ This usage guide is for Cordova version 6.x+ with a recommendation of
 
 ## Cordova Demo App
 
-You can go to GitHub to download the [Mati Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp).
+You can go to GitHub to download the [Mati Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp) or the [Mati Ionic Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp).
 
 ## Cordova
 
