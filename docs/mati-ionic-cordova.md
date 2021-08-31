@@ -1,5 +1,5 @@
 ---
-title: "Mati for Ionic Cordova"
+title: "Ionic Cordova"
 excerpt: "Add the Mati button to your Cordova app."
 slug: "mobile-sdks"
 category: 61141a8437375100442f3d20
@@ -179,9 +179,6 @@ export class HomePage {
 
 }
  ```
-
-### Ionic Cordova Demo App
-You can go to GitHub to download the [Mati Ionic Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp)
 
 ## Android
 
