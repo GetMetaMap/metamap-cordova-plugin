@@ -1,20 +1,60 @@
-# Cordova&Ionic plugin for Mati SDK
-## Recommended version of Cordova is 10. (minimum is 6.X+).
-Create a new Cordova project or Ionic project
-Add the SDK plugin with the following command
+---
+title: "Mati for Ionic Cordova"
+excerpt: "Add the Mati button to your Cordova app."
+slug: "mobile-sdks"
+category: 61141a8437375100442f3d20
+---
 
-INSTALL: cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
+# Mati for Ionic Cordova Usage Guide
 
-UNINSTALL: cordova plugin remove mati-global-id-sdk-cordova-plugin
+This is a usage guide to implement Mati for [Ionic for Cordova framework](https://ionicframework.com/docs/v1/guide/preface.html) for the following platforms:
 
-# Cordova.
+* [Cordova](#cordova)
+* [Ionic](#ionic)
+* [Android](#Android)
+* [iOS](#iOS)
 
+_**Note**_ This usage guide is for Cordova version 6.x+ with a recommendation of Cordova version 10.
 
-### Create html
+## Cordova Demo App
 
-In your project add a button to trigger the login process.
+You can go to GitHub to download the [Mati Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp).
 
-### example of html for cordova
+## Cordova
+
+### Install Mati for Cordova
+
+In a terminal, install Mati for Cordova:
+
+```bash
+cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
+```
+
+#### Upgrade Mati for Cordova
+To upgrade to the latest version of Mati for Cordova, you will need first uninstall your current version:
+
+```bash
+cordova plugin remove mati-global-id-sdk-cordova-plugin
+```
+
+Then install the latest Mati version:
+```bash
+cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
+```
+
+### Add Mati to Your Cordova App
+
+You will need to update your HTML and JavaScript files to add the Mati button to your Cordova application:
+
+* [HTML](#cordova-html)
+* [JavaScript](#cordova-javascript)
+
+<a id="cordova-html"></a>
+#### HTML
+
+Add the Mati button to your HTML file:
+
+**HTML Example for Cordova**
 ```
  <input
      class="matiButton"
@@ -23,12 +63,18 @@ In your project add a button to trigger the login process.
      value="show Mati Flow"
      />
  ```
- 
-### example of index.js for cordova
 
- ```    
+<a id="cordova-javascript"></a>
+#### JavaScript
+
+Add the Mati button in your JavaScript file `index.js`:
+
+
+**JavaScript Example for Cordova**
+
+```js
 function onDeviceReady() {
- 
+
 //trigger login on button click
 var matiButton = document.getElementById("matiButton");
 
@@ -51,17 +97,41 @@ var matiButton = document.getElementById("matiButton");
 
 }
  ```
- 
-## Please see cordovaDemoApp folder for example on Cordova
-https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp
 
-# Ionic.
-INSTALL: ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
+## Ionic Cordova
 
-UNINSTALL: ionic cordova plugin remove mati-global-id-sdk-cordova-plugin
+### Install Mati for Ionic Cordova
 
-### example of html for Ionic
+In a terminal, install Mati for Ionic Cordova:
+
+```bash
+ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
 ```
+
+#### Upgrade Mati for Ionic Cordova
+To upgrade to the latest version of Mati for Cordova, you will need first uninstall your current version:
+
+```bash
+ionic cordova plugin remove mati-global-id-sdk-cordova-plugin
+```
+Then install the latest Mati version:
+
+```bash
+ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
+```
+
+### Add Mati to Your Ionic Cordova App
+
+You will need to update your HTML and TypeScript files to add the Mati button to your Cordova application:
+
+* [HTML](#ionic-cordova-html)
+* [Type Script](#ionic-cordova-typescript)
+
+<a id="ionic-cordova-html"></a>
+#### HTML
+
+**HTML Example for Ionic Cordova**
+```html
  <input
     class="matiButton"
     id="matiButton"
@@ -69,10 +139,11 @@ UNINSTALL: ionic cordova plugin remove mati-global-id-sdk-cordova-plugin
     value="show Mati Flow"
     ion-item (click)="showMatiFlow()"/>
  ```
- 
-### example of home.page.ts for Ionic
+<a id="ionic-cordova-typescript"></a>
+#### TypeScript
 
- ```    
+**TypeScript Example for Ionic Cordova: home.page.ts**
+```ts
 import { Component } from '@angular/core';
 
 //global instance of cordova
@@ -86,7 +157,7 @@ declare var cordova: any;
 export class HomePage {
 
   constructor() {}
-  
+
   ionViewDidEnter() {
     //register to callback
     cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
@@ -100,7 +171,7 @@ export class HomePage {
   }
 
   showMatiFlow() {
-   //set 3 params clientId (cant be null), flowId, metadata 
+   //set 3 params clientId (cant be null), flowId, metadata
    var yourMetadata = { param1: "value1", param2: "value2" }
     var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
     cordova.plugins.MatiGlobalIDSDK.showMatiFlow(matiParams);
@@ -108,68 +179,53 @@ export class HomePage {
 
 }
  ```
- 
-## Please see cordovaIonicDemoApp folder for example on Ionic
-https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp
 
-# Additional info
+### Ionic Cordova Demo App
+You can go to GitHub to download the [Mati Ionic Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp)
 
 ## Android
-You have to check your project: YourProject/platforms/android/mati-global-id-sdk-cordova-plugin/demoCordovaMati-build.gradle
 
-```
-dependencies {
-implementation 'com.getmati:mati-sdk:HERE_IS_LATEST_VERSION'
-}
-```
-Check this for latest version: 
-https://search.maven.org/artifact/com.getmati/mati-sdk
+Download the latest version of Mati for Android [here](https://search.maven.org/artifact/com.getmati/mati-sdk).
 
- 
-### Set AndroidX support into config.xml for cordova project
+1. Check that your project's Gradle file (`<YourProject>/platforms/android/mati-global-id-sdk-cordova-plugin/<demoCordovaMati-build>.gradle`) uses the latest version of Mati for Cordova:
+<br />
 
-```
-<platform name="android">
-	<preference name="AndroidXEnabled" value="true" />
-</platform>
-```
-### iOS
+    **Your Gradle File**
+    ```java
+    dependencies {
+      implementation 'com.getmati:mati-sdk:<LATEST_VERSION>'
+    }
+    ```
 
-In the IOS platform find the Podfile file. 
-The targeted OS version should be a minimum of 11.4.
+1. Enable AndroidX support in `config.xml`.
 
-Run "pod install" to fetch the project dependencies.
+    ```xml
+    <platform name="android">
+    	<preference name="AndroidXEnabled" value="true" />
+    </platform>
+    ```
 
-The following permissions are needed to capture video and access the photo gallery.
+## iOS
 
-For voiceliveness feature please add NSMicrophoneUsageDescription
+The following instructions are for iOS version 11.4 or higher.
+1.  The latest version of Mati for iOS: https://cocoapods.org/pods/Mati-Global-ID-SDK.
+  You can also check your podfile for version information. For example:
+    ```ruby
+    platform :ios, '11.4'
+    target 'demoCordovaMati' do
+        pod 'Mati-Global-ID-SDK'
+    end
+    ```
+1. In the iOS directory find the podfile and install:
+  `pod install`
+1. In the `info.plist` file, add the following permissions to capture video, access the photo gallery, and capture audio for voiceliveness:
+  **Info.plist**
 
-### Info.plist
-
-```
-<key>NSCameraUsageDescription</key>
-<string>Mati needs access to your Camera</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Mati needs access to your media library</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>Mati needs access to your Microphone</string>
-```
-### Make sure that you are using the latest version our sdk
-
-You have to check your project: YourProject/platforms/ios/Podfile
-
-```
-platform :ios, '11.4'
-target 'demoCordovaMati' do
-    pod 'Mati-Global-ID-SDK'
-end
-```
-Check this for latest version: 
-https://cocoapods.org/pods/Mati-Global-ID-SDK
-
-# Please see cordovaIonicDemoApp folder for example
-https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp
-
-## Have any questions? Feel free create issue here.
-
-
+    ```xml
+    <key>NSCameraUsageDescription</key>
+    <string>Mati needs access to your Camera</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Mati needs access to your media library</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Mati needs access to your Microphone</string>
+    ```
