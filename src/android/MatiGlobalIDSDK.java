@@ -29,7 +29,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         switch (action) {
-            case SET_CALLBACK:
+            case SHOW_MATIFLOW:
                 String clientId = null;
                 String flowId = null;
                 JSONObject metadata = null;
@@ -45,7 +45,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
                 }
                 return true;
 
-            case SHOW_MATIFLOW:
+            case SET_CALLBACK:
                 mOnCallback = callbackContext;
                 return true;
 
