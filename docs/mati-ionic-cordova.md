@@ -10,9 +10,9 @@ category: 61141a8437375100442f3d20
 This is a usage guide to implement Mati for [Ionic for Cordova framework](https://ionicframework.com/docs/v1/guide/preface.html) for the following platforms:
 
 * [Cordova](#cordova)
-* [Ionic](#ionic)
-* [Android](#Android)
-* [iOS](#iOS)
+* [Ionic](#ionic-cordova)
+* [Android](#android)
+* [iOS](#ios)
 
 _**Note**_ This usage guide is for Cordova version 6.x+ with a recommendation of Cordova version 10.
 
@@ -185,9 +185,7 @@ export class HomePage {
 Download the latest version of Mati for Android [here](https://search.maven.org/artifact/com.getmati/mati-sdk).
 
 1. Check that your project's Gradle file (`<YourProject>/platforms/android/mati-global-id-sdk-cordova-plugin/<demoCordovaMati-build>.gradle`) uses the latest version of Mati for Cordova:
-<br />
 
-    **Your Gradle File**
     ```java
     dependencies {
       implementation 'com.getmati:mati-sdk:<LATEST_VERSION>'
@@ -196,11 +194,11 @@ Download the latest version of Mati for Android [here](https://search.maven.org/
 
 1. Enable AndroidX support in `config.xml`.
 
-    ```xml
-    <platform name="android">
-    	<preference name="AndroidXEnabled" value="true" />
-    </platform>
-    ```
+   ```xml
+   <platform name="android">
+   	<preference name="AndroidXEnabled" value="true" />
+   </platform>
+   ```
 
 ## iOS
 
