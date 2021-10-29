@@ -3,6 +3,7 @@ title: "Ionic Cordova"
 excerpt: "Add the Mati button to your Cordova app."
 slug: "mobile-sdks"
 category: 61141a8437375100442f3d20
+hidden: true
 ---
 
 # Mati for Ionic Cordova Usage Guide
