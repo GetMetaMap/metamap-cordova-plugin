@@ -203,11 +203,11 @@ Download the latest version of Mati for Android [here](https://search.maven.org/
 
 ## iOS
 
-The following instructions are for iOS version 11.4 or higher.
+The following instructions are for iOS version 12.0 or higher.
 1.  The latest version of Mati for iOS: https://cocoapods.org/pods/Mati-Global-ID-SDK.
   You can also check your podfile for version information. For example:
     ```ruby
-    platform :ios, '11.4'
+    platform :ios, '12.0'
     target 'demoCordovaMati' do
         pod 'Mati-Global-ID-SDK'
     end
