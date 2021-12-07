@@ -39,7 +39,7 @@
     CDVPluginResult* pluginResult = nil;
     NSString* clientId = nil;
     NSString* flowId = nil;
-    NSDictionary* metadata = @{ "sdkType" : "ios_cordova"};
+    NSDictionary* metadata = @{ "sdkType" : "cordova"};
     NSDictionary* options = [[NSDictionary alloc]init];
     
     if ([command.arguments count] > 0) {
