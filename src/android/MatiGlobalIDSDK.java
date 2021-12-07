@@ -32,7 +32,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
             case SHOW_MATIFLOW:
                 String clientId = null;
                 String flowId = null;
-                JSONObject metadata = null;
+                JSONObject metadata = (new JSONObject()).put("sdkType", "cordova");
                 if (args != null) {
                     JSONObject params = args.getJSONObject(0);
                     clientId = params.getString("clientId");
