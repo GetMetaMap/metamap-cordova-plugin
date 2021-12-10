@@ -1,5 +1,5 @@
-# Mati for Ionic Cordova Usage Guide
+# Metamap for Ionic Cordova Usage Guide
 
-The Mati for Ionic Cordova usage guide can be found in the following location:
+The Metamap for Ionic Cordova usage guide can be found in the following location:
 
-* [Mati for Ionic Cordova](docs/mati-ionic-cordova.md)
+* [Metamap for Ionic Cordova](docs/metamap-ionic-cordova.md)
