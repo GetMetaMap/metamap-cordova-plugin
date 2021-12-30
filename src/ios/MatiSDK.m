@@ -78,11 +78,14 @@
     [MatiButtonResult shared].delegate = self;
 }
 
-- (void)verificationSuccessWithIdentityId:(NSString *)identityId {
+- (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(NSString *)verificationID {
     if(setMatiCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:identityId];
-        [pluginResult setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
+        CDVPluginResult* pluginResultz = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:verificationID];
+        [self.commandDelegate sendPluginResult:pluginResultz callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
+        [pluginResult setKeepCallbackAsBool:YES];
+        [pluginResultz setKeepCallbackAsBool:YES];
     }
 }
 
