@@ -80,7 +80,8 @@
 
 - (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
     if(setMatiCallbackCDVInvokedUrlCommand != nil){
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:identityId];
+        NSDictionary *dict = @{@"identityId": identityId, @"verificationID": verificationID};
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
         [pluginResult setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
     }
