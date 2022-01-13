@@ -1,9 +1,8 @@
 ---
 title: "Ionic Cordova"
-excerpt: "Add the Mati button to your Cordova app."
-slug: "mobile-sdks"
-category: 61141a8437375100442f3d20
-hidden: true
+excerpt: "Add the MetaMap button to your Cordova app."
+slug: "ionic-cordova-sdk"
+category: 61ae8e8dba577a0010791480
 ---
 
 # Mati for Ionic Cordova Usage Guide
