@@ -1,7 +1,7 @@
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'com.getmati:mati-sdk:3.13.0'
+    implementation 'com.getmati:mati-sdk:3.14.0'
 }
