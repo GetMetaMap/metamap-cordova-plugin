@@ -2,4 +2,4 @@
 
 The MetaMap for Ionic Cordova usage guide can be found in the following location:
 
-* [MetaMap for Ionic Cordova](docs/mati-ionic-cordova.md)
+* [MetaMap for Ionic Cordova](docs/metaMap-ionic-cordova.md)

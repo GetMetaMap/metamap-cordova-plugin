@@ -1,22 +1,22 @@
-/********* MatiGlobalIDSDK.m Cordova Plugin Implementation *******/
+/********* MetaMapGlobalIDSDK.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
-#import <MatiSDK/MatiSDK.h>
+#import <MetaMapSDK/MetaMapSDK.h>
 
-@interface MatiGlobalIDSDK : CDVPlugin <MatiButtonResultDelegate>{
+@interface MetaMapGlobalIDSDK : CDVPlugin <MetaMapButtonResultDelegate>{
     // Member variables go here.
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
-- (void)showMatiFlow:(CDVInvokedUrlCommand*)command;
-- (void)setMatiCallback:(CDVInvokedUrlCommand*)command;
+- (void)showMetaMapFlow:(CDVInvokedUrlCommand*)command;
+- (void)setMetaMapCallback:(CDVInvokedUrlCommand*)command;
 
 #define isNull(value) value == nil || [value isKindOfClass:[NSNull class]]
 
 @end
 
-@implementation MatiGlobalIDSDK{
-    CDVInvokedUrlCommand* setMatiCallbackCDVInvokedUrlCommand;
+@implementation MetaMapGlobalIDSDK{
+    CDVInvokedUrlCommand* setMetaMapCallbackCDVInvokedUrlCommand;
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
@@ -34,7 +34,7 @@
 }
 
 
-- (void)showMatiFlow:(CDVInvokedUrlCommand*)command
+- (void)showMetaMapFlow:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* clientId = nil;
@@ -46,7 +46,7 @@
         options = [command argumentAtIndex:0];
         if (isNull([options objectForKey:@"clientId"])) {
             clientId = nil;
-            NSLog(@"Please set yours Mati client ID");
+            NSLog(@"Please set yours MetaMap client ID");
         } else {
             clientId = [options objectForKey:@"clientId"];
         }
@@ -62,36 +62,36 @@
         }
     
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [Mati.shared showMatiFlowWithClientId: clientId flowId: flowId metadata: metadata];
+            [MetaMap.shared showMetaMapFlowWithClientId: clientId flowId: flowId metadata: metadata];
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         });
         
     } else {
-        NSLog(@"Please set yours Mati client ID");
+        NSLog(@"Please set yours MetaMap client ID");
     }
 }
 
-- (void)setMatiCallback:(CDVInvokedUrlCommand*)command
+- (void)setMetaMapCallback:(CDVInvokedUrlCommand*)command
 {
-    setMatiCallbackCDVInvokedUrlCommand = command;
-    [MatiButtonResult shared].delegate = self;
+    setMetaMapCallbackCDVInvokedUrlCommand = command;
+    [MetaMapButtonResult shared].delegate = self;
 }
 
 - (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
-    if(setMatiCallbackCDVInvokedUrlCommand != nil){
+    if(setMetaMapCallbackCDVInvokedUrlCommand != nil){
         NSDictionary *dict = @{@"identityId": identityId, @"verificationID": verificationID};
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
         [pluginResult setKeepCallbackAsBool:YES];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:setMetaMapCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
 - (void)verificationCancelled {
-    if(setMatiCallbackCDVInvokedUrlCommand != nil){
+    if(setMetaMapCallbackCDVInvokedUrlCommand != nil){
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"Verification cancelled"];
         [pluginResult setKeepCallbackAsBool:YES];
-         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMatiCallbackCDVInvokedUrlCommand.callbackId];
+         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMetaMapCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
