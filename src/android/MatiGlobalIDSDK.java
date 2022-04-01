@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Iterator;
+import org.json.*;
 import static android.app.Activity.RESULT_OK;
 import java.util.HashMap;
 
@@ -75,7 +76,8 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
                 HashMap<String,String> map = new HashMap<String,String>();
                 map.put("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                 map.put("verificationID", data.getStringExtra(MatiSdk.ARG_IDENTITY_ID));
-                PluginResult result = new PluginResult(PluginResult.Status.OK, map);
+                JSONObject json = new JSONObject(map);
+                PluginResult result = PluginResult(PluginResult.Status.OK,json.toString() );
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             } else {
