@@ -14,7 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Iterator;
+import org.json.*;
 import static android.app.Activity.RESULT_OK;
+import java.util.HashMap;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -71,10 +73,11 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == MatiSdk.REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
-                Map map = HashMap<String,String>();
+                HashMap<String,String> map = new HashMap<String,String>();
                 map.put("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                 map.put("verificationID", data.getStringExtra(MatiSdk.ARG_IDENTITY_ID));
-                PluginResult result = new PluginResult(PluginResult.Status.OK, map);
+                JSONObject json = new JSONObject(map);
+                PluginResult result = new PluginResult(PluginResult.Status.OK,json);
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             } else {
@@ -90,17 +93,17 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
         if (metadata == null)
             return null;
 
-                Metadata.Builder metadataBuilder = new Metadata.Builder();
-                Iterator<String> keys = metadata.keys();
-                String key;
-                while(keys.hasNext()) {
-                     key = keys.next();
-                    try {
-                        metadataBuilder.with(key, metadata.get (key));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+        Metadata.Builder metadataBuilder = new Metadata.Builder();
+        Iterator<String> keys = metadata.keys();
+        String key;
+        while(keys.hasNext()) {
+            key = keys.next();
+            try {
+                metadataBuilder.with(key, metadata.get (key));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         return metadataBuilder.build();
     }
 }
