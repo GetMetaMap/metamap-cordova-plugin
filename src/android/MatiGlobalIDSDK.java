@@ -74,7 +74,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
                 Map map = HashMap<String,String>();
                 map.put("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                 map.put("verificationID", data.getStringExtra(MatiSdk.ARG_IDENTITY_ID));
-                PluginResult result = new PluginResult(PluginResult.Status.OK, map);
+                PluginResult result = new PluginResult(PluginResult.Status.OK, "Avo");
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             } else {
