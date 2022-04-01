@@ -33,7 +33,6 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-
 - (void)showMatiFlow:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
