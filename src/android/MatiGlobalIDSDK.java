@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Iterator;
 import static android.app.Activity.RESULT_OK;
+import java.util.HashMap;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -71,7 +72,7 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == MatiSdk.REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
-                Map map = new HashMap<String,String>();
+                HashMap<String,String> map = new HashMap<String,String>();
                 map.put("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
                 map.put("verificationID", data.getStringExtra(MatiSdk.ARG_IDENTITY_ID));
                 PluginResult result = new PluginResult(PluginResult.Status.OK, map);
