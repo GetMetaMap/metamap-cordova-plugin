@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="metaMap-global-id-sdk-cordova-plugin" version="0.0.4">
-   <name>MatiGlobalIDSDK</name>
-   <js-module name="MatiGlobalIDSDK" src="www/MatiGlobalIDSDK.js">
-      <clobbers target="cordova.plugins.MatiGlobalIDSDK" />
+   <name>MetaMapGlobalIDSDK</name>
+   <js-module name="MetaMapGlobalIDSDK" src="www/MetaMapGlobalIDSDK.js">
+      <clobbers target="cordova.plugins.MetaMapGlobalIDSDK" />
    </js-module>
    <platform name="android">
       <config-file parent="/*" target="res/xml/config.xml">
