@@ -1,11 +1,11 @@
-package com.cordova.plugin.matiglobalidsdk;
+package com.cordova.plugin.metaMapglobalidsdk;
 
 import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.Nullable;
 
-import com.getmati.mati_sdk.Metadata;
-import com.getmati.mati_sdk.MatiSdk;
+import com.metamap.metamap_sdk.MetamapSdk;
+import com.metamap.metamap_sdk.Metadata;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -21,17 +21,17 @@ import java.util.HashMap;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class MatiGlobalIDSDK extends CordovaPlugin  {
+public class MetaMapGlobalIDSDK extends CordovaPlugin  {
 
-    public static final String SHOW_MATIFLOW = "showMatiFlow";
-    public static final String SET_CALLBACK = "setMatiCallback";
+    public static final String SHOW_METAMAPFLOW = "showMetaMapFlow";
+    public static final String SET_CALLBACK = "setMetaMapCallback";
     public static final String SDK_TYPE = "sdkType";
     CallbackContext mOnCallback;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         switch (action) {
-            case SHOW_MATIFLOW:
+            case SHOW_METAMAPFLOW:
                 String clientId = null;
                 String flowId = null;
                 JSONObject metadata = (new JSONObject()).put("sdkType", "cordova");
@@ -41,9 +41,9 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
                     flowId = params.optString("flowId");
                     metadata = params.optJSONObject("metadata");
 
-                    this.showMatiFlow(clientId, flowId, metadata, callbackContext);
+                    this.showMetaMapFlow(clientId, flowId, metadata, callbackContext);
                 } else {
-                    Log.e("Integration error", "Please set yours Mati client ID");
+                    Log.e("Integration error", "Please set yours MetaMap client ID");
                 }
                 return true;
 
@@ -56,26 +56,26 @@ public class MatiGlobalIDSDK extends CordovaPlugin  {
         }
     }
 
-    private void showMatiFlow(final String clientId, @Nullable final String flowId , @Nullable final JSONObject metadata, CallbackContext callbackContext) {
+    private void showMetaMapFlow(final String clientId, @Nullable final String flowId , @Nullable final JSONObject metadata, CallbackContext callbackContext) {
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                MatiSdk.INSTANCE.startFlow(cordova.getActivity(),
+                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                callbackContext.success();
+                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
             }
         });
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == MatiSdk.REQUEST_CODE) {
+        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
                 HashMap<String,String> map = new HashMap<String,String>();
-                map.put("identityId", data.getStringExtra(MatiSdk.ARG_VERIFICATION_ID));
-                map.put("verificationID", data.getStringExtra(MatiSdk.ARG_IDENTITY_ID));
+                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
+                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
                 JSONObject json = new JSONObject(map);
                 PluginResult result = new PluginResult(PluginResult.Status.OK,json);
                 result.setKeepCallback(true);
