@@ -34,7 +34,7 @@ cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
 To upgrade to the latest version of MetaMap for Cordova, you will need first uninstall your current version:
 
 ```bash
-cordova plugin remove MetaMap-global-id-sdk-cordova-plugin
+cordova plugin remove mati-global-id-sdk-cordova-plugin
 ```
 
 Then install the latest MetaMap version:
@@ -112,7 +112,7 @@ ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
 To upgrade to the latest version of MetaMap for Cordova, you will need first uninstall your current version:
 
 ```bash
-ionic cordova plugin remove MetaMap-global-id-sdk-cordova-plugin
+ionic cordova plugin remove Mati-global-id-sdk-cordova-plugin
 ```
 Then install the latest MetaMap version:
 
