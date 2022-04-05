@@ -60,11 +60,11 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                MetamapSdk.INSTANCE.startFlow(getReactApplicationContext().getCurrentActivity(),
+                MetamapSdk.INSTANCE.startFlow(cordova.getActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata));
-                reactContext.addActivityEventListener(MetaMapRNSdkModule.this);
+                callbackContext.success();
             }
         });
     }
