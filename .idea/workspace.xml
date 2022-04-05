@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8278346e-c471-4d10-b952-d4ab39b18d1c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/www/MetaMapGlobalIDSDK.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/readme-github-sync.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/readme-github-sync.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/src/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/mati-ionic-cordova.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/metaMap-ionic-cordova.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ios/MatiSDK.m" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/MetaMapSDK.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/MatiGlobalIDSDK.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,4 +1,4 @@
-name: Sync mati-ionic-cordova-user-guide
+name: Sync metamap-ionic-cordova-user-guide
 on:
   push:
     branches:

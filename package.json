@@ -1,9 +1,9 @@
 {
-  "name": "mati-global-id-sdk-cordova-plugin",
+  "name": "metamap-global-id-sdk-cordova-plugin",
   "version": "2.3.3",
-  "description": "Mati SDK plugin",
+  "description": "MetaMap SDK plugin",
   "cordova": {
-    "id": "mati-global-id-sdk-cordova-plugin",
+    "id": "metaMap-global-id-sdk-cordova-plugin",
     "platforms": [
       "android",
       "ios"

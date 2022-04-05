@@ -5,9 +5,9 @@ slug: "ionic-cordova-sdk"
 category: 61ae8e8dba577a0010791480
 ---
 
-# Mati for Ionic Cordova Usage Guide
+# MetaMap for Ionic Cordova Usage Guide
 
-This is a usage guide to implement Mati for [Ionic for Cordova framework](https://ionicframework.com/docs/v1/guide/preface.html) for the following platforms:
+This is a usage guide to implement MetaMap for [Ionic for Cordova framework](https://ionicframework.com/docs/v1/guide/preface.html) for the following platforms:
 
 * [Cordova](#cordova)
 * [Ionic](#ionic-cordova)
@@ -18,33 +18,33 @@ _**Note**_ This usage guide is for Cordova version 6.x+ with a recommendation of
 
 ## Cordova Demo App
 
-You can go to GitHub to download the [Mati Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp) or the [Mati Ionic Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp).
+You can go to GitHub to download the [MetaMap Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaDemoApp) or the [Mati Ionic Cordova demo app](https://github.com/GetMati/mati-mobile-examples/tree/main/cordovaIonicDemoApp).
 
 ## Cordova
 
-### Install Mati for Cordova
+### Install MetaMap for Cordova
 
-In a terminal, install Mati for Cordova:
+In a terminal, install MetaMap for Cordova:
 
 ```bash
 cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
 ```
 
-#### Upgrade Mati for Cordova
-To upgrade to the latest version of Mati for Cordova, you will need first uninstall your current version:
+#### Upgrade MetaMap for Cordova
+To upgrade to the latest version of MetaMap for Cordova, you will need first uninstall your current version:
 
 ```bash
-cordova plugin remove mati-global-id-sdk-cordova-plugin
+cordova plugin remove MetaMap-global-id-sdk-cordova-plugin
 ```
 
-Then install the latest Mati version:
+Then install the latest MetaMap version:
 ```bash
 cordova plugin add https://github.com/GetMati/mati-cordova-plugin.git
 ```
 
-### Add Mati to Your Cordova App
+### Add MetaMap to Your Cordova App
 
-You will need to update your HTML and JavaScript files to add the Mati button to your Cordova application:
+You will need to update your HTML and JavaScript files to add the MetaMap button to your Cordova application:
 
 * [HTML](#cordova-html)
 * [JavaScript](#cordova-javascript)
@@ -52,22 +52,22 @@ You will need to update your HTML and JavaScript files to add the Mati button to
 <a id="cordova-html"></a>
 #### HTML
 
-Add the Mati button to your HTML file:
+Add the MetaMap button to your HTML file:
 
 **HTML Example for Cordova**
 ```
  <input
-     class="matiButton"
-     id="matiButton"
+     class="metaMapButton"
+     id="metaMapButton"
      type="button"
-     value="show Mati Flow"
+     value="show MetaMap Flow"
      />
  ```
 
 <a id="cordova-javascript"></a>
 #### JavaScript
 
-Add the Mati button in your JavaScript file `index.js`:
+Add the MetaMap button in your JavaScript file `index.js`:
 
 
 **JavaScript Example for Cordova**
@@ -76,22 +76,22 @@ Add the Mati button in your JavaScript file `index.js`:
 function onDeviceReady() {
 
 //trigger login on button click
-var matiButton = document.getElementById("matiButton");
+var metaMapButton = document.getElementById("metaMapButton");
 
-  matiButton.onclick = () => {
+  metaMapButton.onclick = () => {
       //set 3 params clientId (cant be null), flowId, metadata
       var yourMetadata = { param1: "value1", param2: "value2" }
-      var matiButtinParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
-      cordova.plugins.MatiGlobalIDSDK.showMatiFlow(matiButtinParams)
+      var metaMapButtinParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
+      cordova.plugins.MetaMapGlobalIDSDK.showMetaMapFlow(metaMapButtinParams)
     };
 
     //register to callback
-    cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
+    cordova.plugins.MetaMapGlobalIDSDK.setMetaMapCallback(
      identityId => {
-       console.log("setMatiCallback success: " + identityId);
+       console.log("setMetaMapCallback success: " + identityId);
      },
      error => {
-       console.log("setMatiCallback error: " + error);
+       console.log("setMetaMapCallback error: " + error);
      }
     );
 
@@ -100,29 +100,29 @@ var matiButton = document.getElementById("matiButton");
 
 ## Ionic Cordova
 
-### Install Mati for Ionic Cordova
+### Install MetaMap for Ionic Cordova
 
-In a terminal, install Mati for Ionic Cordova:
-
-```bash
-ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
-```
-
-#### Upgrade Mati for Ionic Cordova
-To upgrade to the latest version of Mati for Cordova, you will need first uninstall your current version:
-
-```bash
-ionic cordova plugin remove mati-global-id-sdk-cordova-plugin
-```
-Then install the latest Mati version:
+In a terminal, install MetaMap for Ionic Cordova:
 
 ```bash
 ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
 ```
 
-### Add Mati to Your Ionic Cordova App
+#### Upgrade MetaMap for Ionic Cordova
+To upgrade to the latest version of MetaMap for Cordova, you will need first uninstall your current version:
 
-You will need to update your HTML and TypeScript files to add the Mati button to your Cordova application:
+```bash
+ionic cordova plugin remove MetaMap-global-id-sdk-cordova-plugin
+```
+Then install the latest MetaMap version:
+
+```bash
+ionic cordova plugin add  https://github.com/GetMati/mati-cordova-plugin.git
+```
+
+### Add MetaMap to Your Ionic Cordova App
+
+You will need to update your HTML and TypeScript files to add the MetaMap button to your Cordova application:
 
 * [HTML](#ionic-cordova-html)
 * [Type Script](#ionic-cordova-typescript)
@@ -133,11 +133,11 @@ You will need to update your HTML and TypeScript files to add the Mati button to
 **HTML Example for Ionic Cordova**
 ```html
  <input
-    class="matiButton"
-    id="matiButton"
+    class="metaMapButton"
+    id="metaMapButton"
     type="button"
-    value="show Mati Flow"
-    ion-item (click)="showMatiFlow()"/>
+    value="show MetaMap Flow"
+    ion-item (click)="showMetaMapFlow()"/>
  ```
 <a id="ionic-cordova-typescript"></a>
 #### TypeScript
@@ -160,21 +160,21 @@ export class HomePage {
 
   ionViewDidEnter() {
     //register to callback
-    cordova.plugins.MatiGlobalIDSDK.setMatiCallback(
+    cordova.plugins.MetaMapGlobalIDSDK.setMetaMapCallback(
       identityId => {
-        console.log("setMatiCallback success: " + identityId);
+        console.log("setMetaMapCallback success: " + identityId);
       },
       error => {
-        console.log("setMatiCallback error: " + error);
+        console.log("setMetaMapCallback error: " + error);
       }
     );  
   }
 
-  showMatiFlow() {
+  showMetaMapFlow() {
    //set 3 params clientId (cant be null), flowId, metadata
    var yourMetadata = { param1: "value1", param2: "value2" }
-    var matiParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
-    cordova.plugins.MatiGlobalIDSDK.showMatiFlow(matiParams);
+    var metaMapParams = { clientId: "YOUR_CLIENT_ID", flowId: "YOUR_FLOW_ID", metadata: yourMetadata }
+    cordova.plugins.MetaMapGlobalIDSDK.showMetaMapFlow(metaMapParams);
   }
 
 }
@@ -182,7 +182,7 @@ export class HomePage {
 
 ## Android
 
-Download the latest version of Mati for Android [here](https://search.maven.org/artifact/com.getmati/mati-sdk).
+Download the latest version of MetaMap for Android [here](https://search.maven.org/artifact/com.getmati/mati-sdk).
 
 1. Check that your project's Gradle file (`<YourProject>/platforms/android/mati-global-id-sdk-cordova-plugin/<demoCordovaMati-build>.gradle`) uses the latest version of Mati for Cordova:
 
@@ -203,12 +203,12 @@ Download the latest version of Mati for Android [here](https://search.maven.org/
 ## iOS
 
 The following instructions are for iOS version 12.0 or higher.
-1.  The latest version of Mati for iOS: https://cocoapods.org/pods/Mati-Global-ID-SDK.
+1.  The latest version of MetaMap for iOS: https://cocoapods.org/pods/MetaMap-Global-ID-SDK.
   You can also check your podfile for version information. For example:
     ```ruby
     platform :ios, '12.0'
-    target 'demoCordovaMati' do
-        pod 'Mati-Global-ID-SDK'
+    target 'demoCordovaMetaMap' do
+        pod 'MetaMap-Global-ID-SDK'
     end
     ```
 1. In the iOS directory find the podfile and install:
@@ -218,9 +218,9 @@ The following instructions are for iOS version 12.0 or higher.
 
     ```xml
     <key>NSCameraUsageDescription</key>
-    <string>Mati needs access to your Camera</string>
+    <string>MetaMap needs access to your Camera</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Mati needs access to your media library</string>
+    <string>MetaMap needs access to your media library</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Mati needs access to your Microphone</string>
+    <string>MetaMap needs access to your Microphone</string>
     ```
