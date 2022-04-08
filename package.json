@@ -1,9 +1,9 @@
 {
-  "name": "metamap-global-id-sdk-cordova-plugin",
-  "version": "3.0.0",
+  "name": "metamap-cordova-plugin",
+  "version": "1.0.10",
   "description": "MetaMap SDK plugin",
   "cordova": {
-    "id": "metaMap-global-id-sdk-cordova-plugin",
+    "id": "metaMap-sdk-cordova-plugin",
     "platforms": [
       "android",
       "ios"
@@ -17,6 +17,20 @@
   ],
   "author": "Andrey Posnov",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetMetaMap/metamap-cordova-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GetMetaMap/metamap-cordova-plugin/issues"
+  },
+  "homepage": "https://github.com/GetMetaMap/metamap-cordova-plugin#readme"
 }

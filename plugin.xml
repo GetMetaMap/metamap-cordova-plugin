@@ -27,7 +27,7 @@
             <param name="onload" value="true" />
          </feature>
       </config-file>
-      <source-file src="src/ios/MetaMapSDK.m" />
+      <source-file src="src/ios/MetaMapGlobalIDSDK.m" />
       <pod name="MetaMap-Global-ID-SDK" />
    </platform>
 </plugin>
