@@ -29,6 +29,6 @@
       </config-file>
       <source-file src="src/ios/MetaMapSDK.m" />
       <pod name="MetaMap-Global-ID-SDK" />
-      <framework src="src/ios/MetaMapGlobalIDSDK.m" custom="true" embed="true" />
+      <framework src="MetaMap-Global-ID-SDK" type="podspec"  />
    </platform>
 </plugin>
