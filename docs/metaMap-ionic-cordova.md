@@ -161,9 +161,9 @@ export class HomePage {
   ionViewDidEnter() {
     //register to callback
     cordova.plugins.MetaMapGlobalIDSDK.setMetaMapCallback(
-      data => {  console.log("setMatiCallback success: " + data.identityId);
-                console.log("setMatiCallback success: " + data.verificationID);
-     },
+      identityId => {
+        console.log("setMetaMapCallback success: " + identityId);
+      },
       error => {
         console.log("setMetaMapCallback error: " + error);
       }
