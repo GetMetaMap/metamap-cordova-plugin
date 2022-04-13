@@ -101,8 +101,9 @@ var metaMapButton = document.getElementById("metaMapButton");
 
     //register to callback
     cordova.plugins.MetaMapGlobalIDSDK.setMetaMapCallback(
-     identityId => {
-       console.log("setMetaMapCallback success: " + identityId);
+      params => {
+       console.log("setMetaMapCallback success: " + params.identityId);
+       console.log("setMetaMapCallback success: " + params.verificationID);
      },
      error => {
        console.log("setMetaMapCallback error: " + error);
