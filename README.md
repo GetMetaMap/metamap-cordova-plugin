@@ -148,3 +148,23 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
     <key>NSMicrophoneUsageDescription</key>
     <string>MetaMap needs access to your Microphone</string>
    ```
+
+## Metadata Usage
+
+Metadata is an additional optional parameter that you can receive using a webhook after passing verification:
+
+Set the Language:
+```bash
+yourMetadata: {"fixedLanguage": "es"}
+   ```
+
+Set the Button Color:
+```bash
+yourMetadata: {"buttonColor": "hexColor"}
+   ```
+
+Set the Title color of the button:
+```bash
+yourMetadata: {"buttonTextColor": "hexColor"}
+   ```
+
