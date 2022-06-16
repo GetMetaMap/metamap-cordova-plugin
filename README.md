@@ -151,13 +151,13 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
     <string>MetaMap needs access to your Microphone</string>
     
     <key>NSLocationWhenInUseUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+    <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+    <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
 
 ## Metadata Usage
