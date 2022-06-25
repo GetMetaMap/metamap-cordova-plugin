@@ -1,3 +1,10 @@
+---
+title: "Cordova Changelog"
+excerpt: "MetaMap's Cordova SDK Changelog"
+slug: "cordova-changelog"
+category: 61ae8e8dba577a0010791480
+hidden: true
+---
 
 ### Install MetaMap for Cordova
 
@@ -162,20 +169,24 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
 
 ## Metadata Usage
 
-Metadata is an additional optional parameter that you can receive using a webhook after passing verification:
+Metadata is an additional optional parameters:
 
-Set the Language:
+1. Set the Language:
 ```bash
 yourMetadata: {"fixedLanguage": "es"}
    ```
 
-Set the Button Color:
+2. Set the Button Color:
 ```bash
 yourMetadata: {"buttonColor": "hexColor"}
    ```
 
-Set the Title color of the button:
+3. Set the Title color of the button:
 ```bash
 yourMetadata: {"buttonTextColor": "hexColor"}
-   ```
+ ```
 
+4. Set identity Id as parameter for re-verification:
+```bash
+yourMetadata: {"identityId": "value"}
+```
