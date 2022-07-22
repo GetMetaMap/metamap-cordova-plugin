@@ -38,7 +38,7 @@
                 <source url="https://cdn.cocoapods.org/" />
             </config>
             <pods use-frameworks="true">
-                <pod name="MetaMap-Global-ID-SDK" spec="3.9.4" />
+                <pod name="MetaMap-Global-ID-SDK" spec="3.9.11" />
             </pods>
         </podspec>
 
