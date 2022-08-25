@@ -6,30 +6,41 @@ category: 61ae8e8dba577a0010791480
 hidden: true
 ---
 
-# Feedback
-
-If you have an issue or ideas to improve MetaMap's Cordova SDK, please look at our [issues](https://github.com/GetMetaMap/metamap-cordova-plugin/issues) page to see if your issue has been reported or to add your own.
-
-<!-- Note to developers: copy/paste the template below for each version. Delete categories that don't apply the the release
-
-# Version
-###### Date
-  
-#### New Features
-* <new feature>
+# 1.1.0
+###### 17.08.2022
 
 #### Updated Features
-* <changes in existing functionality>
+* android SDK updated to [3.22.26](https://docs.getmati.com/docs/android-changelog#version-3226)
 
-#### Deprecated Features
-* <soon-to-be removed features>
 
-#### Removed Features
-* <removed features>
 
-#### Bug Fixes
-* <bug fixes>
+# 1.0.85
+###### 22.07.2022
 
-#### Security Vulnerabilities
-* <known vulnerabilities>
--->
+#### Updated Features
+* iOS SDK updated to [3.9.11](https://docs.getmati.com/docs/ios-changelog#version-3911)
+* android SDK updated to [3.22.24](https://docs.getmati.com/docs/android-changelog#version-3224)
+
+
+
+# 1.0.83
+###### 30.07.2022
+
+#### Updated Features
+* Android SDK updated to [3.22.3](https://docs.getmati.com/docs/android-changelog#version-3223)
+
+
+
+# 1.0.82
+###### 25.07.2022
+
+#### Updated Features
+* updated documentation
+
+
+
+# 1.0.81
+###### 15.08.2022
+
+#### Updated Features
+* Android SDK updated to [3.22.2](https://docs.getmati.com/docs/android-changelog#version-3222)
