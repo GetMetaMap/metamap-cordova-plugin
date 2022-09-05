@@ -15,7 +15,7 @@ hidden: true
 
 2. add the plugin:
 ```bash
-npm i metamap-cordova-plugin@1.2.0
+npm i metamap-cordova-plugin@1.3.0
 ```
 
 3. Add the MetaMap button to your HTML file:
