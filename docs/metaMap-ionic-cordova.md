@@ -4,6 +4,12 @@ excerpt: "MetaMap's Ionic Cordova SDK"
 slug: "ionic-cordova-sdk"
 category: 61ae8e8dba577a0010791480
 ---
+## Version
+This plugin uses the latest versions of the MetaMap iOS and Android SDKs. For more information on the latest native SDK versions, go to:
+* [Android](https://docs.getmati.com/docs/android-changelog)
+* [iOS](https://docs.getati.com/docs/ios-changelog)
+
+For changes to the plugin, go to the [changelog page](https://docs.getmati.com/docs/cordova-changelog)
 
 ### Install MetaMap for Cordova
 
@@ -20,7 +26,7 @@ cordova plugin add metamap-cordova-plugin
 3. Add the MetaMap button to your HTML file:
 
 **HTML Example for Cordova**
-```bash
+```html
  <input
      class="metaMapButton"
      id="metaMapButton"
@@ -36,7 +42,7 @@ cordova plugin add metamap-cordova-plugin
 
 **JavaScript Example for Cordova**
 
-```bash
+```javascript
 function onDeviceReady() {
 
 //trigger login on button click
@@ -79,7 +85,7 @@ ionic cordova plugin add metamap-cordova-plugin
 3. Add the MetaMap button to your HTML file:
 
 **HTML Example for Ionic Cordova**
-```bash
+```html
  <input
      class="metaMapButton"
      id="metaMapButton"
@@ -93,7 +99,7 @@ ionic cordova plugin add metamap-cordova-plugin
 
 **JavaScript Example for Ionic Cordova**
 
-```bash
+```javascript
 function onDeviceReady() {
 
 //trigger login on button click
@@ -146,7 +152,7 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
 1. In the `info.plist` file, add the following permissions to capture video, access the photo gallery, and capture audio for voiceliveness:
    **Info.plist**
 
-```bash
+```xml
     <key>NSCameraUsageDescription</key>
     <string>MetaMap needs access to your Camera</string>
     
@@ -160,9 +166,9 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
     <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>MetaMap will use your location information to provide best possible verification experience.</string>
+    <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
-	<key>NSLocationAlwaysUsageDescription</key>
+    <key>NSLocationAlwaysUsageDescription</key>
     <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
 
