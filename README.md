@@ -1,9 +1,6 @@
 ---
-title: "Cordova Changelog"
-excerpt: "MetaMap's Cordova SDK Changelog"
-slug: "cordova-changelog"
-category: 61ae8e8dba577a0010791480
-hidden: true
+LTS version (Recommended for most users): "1.3.0"
+Current Version(Latest features): "1.3.1"
 ---
 
 ### Install MetaMap for Cordova
