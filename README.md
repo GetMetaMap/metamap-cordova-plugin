@@ -1,6 +1,6 @@
 ---
 LTS version (Recommended for most users): "1.3.0"
-Current Version(Latest features): "1.3.1"
+Current Version(Latest features): "1.4.0"
 ---
 
 ### Install MetaMap for Cordova
