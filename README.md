@@ -1,7 +1,13 @@
 ---
-LTS version (Recommended for most users): "1.3.0"
-Current Version(Latest features): "1.4.1"
+title: "Ionic Cordova"
+excerpt: "MetaMap's Ionic Cordova SDK"
+slug: "ionic-cordova-sdk"
+category: 61ae8e8dba577a0010791480
 ---
+
+| LTS version (Recommended for most users): | Current Version(Latest features) |
+|-------------------------------------------|----------------------------------|
+| 1.4.2                                     | 1.3.0                            |
 
 ### Install MetaMap for Cordova
 

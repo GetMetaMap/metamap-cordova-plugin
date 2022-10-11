@@ -4,12 +4,10 @@ excerpt: "MetaMap's Ionic Cordova SDK"
 slug: "ionic-cordova-sdk"
 category: 61ae8e8dba577a0010791480
 ---
-## Version
-This plugin uses the latest versions of the MetaMap iOS and Android SDKs. For more information on the latest native SDK versions, go to:
-* [Android](https://docs.getmati.com/docs/android-changelog)
-* [iOS](https://docs.getati.com/docs/ios-changelog)
 
-For changes to the plugin, go to the [changelog page](https://docs.getmati.com/docs/cordova-changelog)
+| LTS version (Recommended for most users): | Current Version(Latest features) |
+|-------------------------------------------|----------------------------------|
+| 1.4.2                                     | 1.3.0                            |
 
 ### Install MetaMap for Cordova
 
@@ -20,13 +18,13 @@ For changes to the plugin, go to the [changelog page](https://docs.getmati.com/d
 
 2. add the plugin:
 ```bash
-cordova plugin add metamap-cordova-plugin
+npm i metamap-cordova-plugin@1.3.0
 ```
 
 3. Add the MetaMap button to your HTML file:
 
 **HTML Example for Cordova**
-```html
+```bash
  <input
      class="metaMapButton"
      id="metaMapButton"
@@ -42,7 +40,7 @@ cordova plugin add metamap-cordova-plugin
 
 **JavaScript Example for Cordova**
 
-```javascript
+```bash
 function onDeviceReady() {
 
 //trigger login on button click
@@ -85,7 +83,7 @@ ionic cordova plugin add metamap-cordova-plugin
 3. Add the MetaMap button to your HTML file:
 
 **HTML Example for Ionic Cordova**
-```html
+```bash
  <input
      class="metaMapButton"
      id="metaMapButton"
@@ -99,7 +97,7 @@ ionic cordova plugin add metamap-cordova-plugin
 
 **JavaScript Example for Ionic Cordova**
 
-```javascript
+```bash
 function onDeviceReady() {
 
 //trigger login on button click
@@ -152,7 +150,7 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
 1. In the `info.plist` file, add the following permissions to capture video, access the photo gallery, and capture audio for voiceliveness:
    **Info.plist**
 
-```xml
+```bash
     <key>NSCameraUsageDescription</key>
     <string>MetaMap needs access to your Camera</string>
     
@@ -166,9 +164,9 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
     <string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>MetaMap will use your location information to provide best possible verification experience.</string>
+	<string>MetaMap will use your location information to provide best possible verification experience.</string>
 	
-    <key>NSLocationAlwaysUsageDescription</key>
+	<key>NSLocationAlwaysUsageDescription</key>
     <string>MetaMap will use your location information to provide best possible verification experience.</string>
    ```
 
@@ -195,3 +193,9 @@ yourMetadata: {"buttonTextColor": "hexColor"}
 ```bash
 yourMetadata: {"identityId": "value"}
 ```
+
+## Some error codes you may get during integration
+
+`402` - MetaMap services are not paid: please contact your customer success manager
+
+`403` - MetaMap credentials issues: please check your client id and MetaMap id
