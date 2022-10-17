@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.metamap.metamap_sdk.MetamapSdk;
 import com.metamap.metamap_sdk.Metadata;
-
+import android.graphics.Color;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -88,21 +88,35 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
         }
     }
 
-    public Metadata convertToMetadata(final JSONObject metadata)
-    {
+    public Metadata convertToMetadata(final JSONObject metadata) {
         if (metadata == null)
             return null;
 
         Metadata.Builder metadataBuilder = new Metadata.Builder();
         Iterator<String> keys = metadata.keys();
         String key;
-        while(keys.hasNext()) {
+        while (keys.hasNext()) {
             key = keys.next();
-            try {
-                metadataBuilder.with(key, metadata.get (key));
-            } catch (JSONException e) {
-                e.printStackTrace();
+            Log.e("ASDASD","============ " + key);
+            if (key.toLowerCase().contains("color")) {
+                String hexColor = (String) metadata.get(key);
+                int color = Color.parseColor(hexColor);
+                if (hexColor.length() == 9) {
+                    color = Color.argb(Color.blue(color), Color.alpha(color), Color.red(color), Color.green(color));
+                }
+                try {
+                    metadataBuilder.with(key, color);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    metadataBuilder.with(key, metadata.get(key));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
         return metadataBuilder.build();
     }
