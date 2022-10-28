@@ -7,7 +7,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 1.4.2                                     | 1.3.0                            |
+|1.4.10                                     | 1.4.10                           |
 
 ### Install MetaMap for Cordova
 
@@ -18,7 +18,7 @@ category: 61ae8e8dba577a0010791480
 
 2. add the plugin:
 ```bash
-npm i metamap-cordova-plugin@1.3.0
+npm i metamap-cordova-plugin@1.4.10
 ```
 
 3. Add the MetaMap button to your HTML file:
