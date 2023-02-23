@@ -3,5 +3,5 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.metamap:android-sdk:3.29.0'
+    implementation 'com.metamap:android-sdk:3.29.1'
 }
