@@ -38,7 +38,7 @@
                 <source url="https://cdn.cocoapods.org/" />
             </config>
             <pods use-frameworks="true">
-                <pod name="MetaMapSDK" spec="3.13.0" />
+                <pod name="MetaMapSDK" spec="3.13.1" />
             </pods>
         </podspec>
 
