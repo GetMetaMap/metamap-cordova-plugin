@@ -7,7 +7,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 2.0.0                                     | 2.0.2                            |
+| 2.0.4                                     | 2.0.4                            |
 
 ### Install MetaMap for Cordova
 
