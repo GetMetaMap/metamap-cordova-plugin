@@ -38,6 +38,10 @@
     CDVPluginResult* pluginResult = nil;
     NSString* clientId = nil;
     NSString* flowId = nil;
+
+    NSString* configurationId = nil;
+    NSString* encryptionConfigurationId = nil;
+
     NSDictionary* metadata = @{ @"sdkType" : @"cordova"};
     NSDictionary* options = [[NSDictionary alloc]init];
     
@@ -54,18 +58,31 @@
         } else {
             flowId = [options objectForKey:@"flowId"];
         }
+
         if (isNull([options objectForKey:@"metadata"])) {
             metadata = nil;
         } else {
             metadata = [options objectForKey:@"metadata"];
         }
+
+        if (isNull([options objectForKey:@"configurationId"])) {
+            configurationId = nil;
+        } else {
+             configurationId = [options objectForKey:@"configurationId"];
+        }
+
+         if (isNull([options objectForKey:@"encryptionConfigurationId"])) {
+            encryptionConfigurationId = nil;
+         } else {
+            encryptionConfigurationId = [options objectForKey:@"encryptionConfigurationId"];
+         }
     
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [MetaMap.shared showMetaMapFlowWithClientId: clientId flowId: flowId configurationId: nil encryptionConfigurationId: nil metadata: metadata];
+            [MetaMap.shared showMetaMapFlowWithClientId: clientId flowId: flowId configurationId: configurationId encryptionConfigurationId: encryptionConfigurationId metadata: metadata];
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         });
-        
+
     } else {
         NSLog(@"Please set yours MetaMap client ID");
     }

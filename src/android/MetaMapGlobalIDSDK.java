@@ -35,14 +35,26 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
             case SHOW_METAMAPFLOW:
                 String clientId = null;
                 String flowId = null;
+                String configurationId = null;
+                String encryptionConfigurationId = null;
                 JSONObject metadata = (new JSONObject()).put("sdkType", "cordova");
                 if (args != null) {
                     JSONObject params = args.getJSONObject(0);
                     clientId = params.getString("clientId");
                     flowId = params.optString("flowId");
+                    if (params.has("configurationId")) {
+                        if (params.getString("configurationId") != "" && params.getString("configurationId") != "null") {
+                            configurationId = params.getString("configurationId");
+                        }
+                    }
+                    if (params.has("encryptionConfigurationId")) {
+                        if (params.getString("encryptionConfigurationId") != "" && params.getString("encryptionConfigurationId") != "null") {
+                            encryptionConfigurationId = params.getString("encryptionConfigurationId");
+                        }
+                    }
                     metadata = params.optJSONObject("metadata");
 
-                    this.showMetaMapFlow(clientId, flowId, metadata, callbackContext);
+                    this.showMetaMapFlow(clientId, flowId, configurationId, encryptionConfigurationId, metadata, callbackContext);
                 } else {
                     Log.e("Integration error", "Please set yours MetaMap client ID");
                 }
@@ -57,14 +69,17 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
         }
     }
 
-    private void showMetaMapFlow(final String clientId, @Nullable final String flowId , @Nullable final JSONObject metadata, CallbackContext callbackContext) {
+    private void showMetaMapFlow(final String clientId, @Nullable final String flowId, @Nullable final String configurationId, @Nullable final String encryptionConfigurationId,  @Nullable final JSONObject metadata,  CallbackContext callbackContext) {
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 MetamapSdk.INSTANCE.startFlow(cordova.getActivity(),
                         clientId,
                         flowId,
-                        convertToMetadata(metadata));
+                        convertToMetadata(metadata),
+                        2576,
+                        configurationId,
+                        encryptionConfigurationId);
                 callbackContext.success();
             }
         });
