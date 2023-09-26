@@ -7,7 +7,7 @@ category: 61ae8e8dba577a0010791480
 
 | LTS version (Recommended for most users): | Current Version(Latest features) |
 |-------------------------------------------|----------------------------------|
-| 2.2.1                                     | 2.2.1                            |
+| 2.3.0                                     | 2.3.0                            |
 
 ### Install MetaMap for Cordova
 
@@ -172,27 +172,43 @@ Download the latest version of MetaMap for Android [here](https://search.maven.o
 
 ## Metadata Usage
 
-Metadata is an additional optional parameters:
+Metadata is an additional optional parameter that can be used to replace certain settings:
 
-1. Set the Language:
-    ```bash
-    yourMetadata: {"fixedLanguage": "es"}
-    ```
+### Set the Language:
+By default the SDK language is set to "en" but it is editable to the language from the list:
+"es", "fr", "pt", "ru", "tr", "de", "it", "pl", "th".
+```bash
+metaData: {"fixedLanguage": "value"}
+```
 
-2. Set the Button Color:
-   ```bash
-   yourMetadata: {"buttonColor": "hexColor"}
+### Set the Button Color:
+By default main button color is white but it is editable by using hex Color format "hexColor".
+```bash
+metaData: {"buttonColor": "value"}
+```
+
+### Set the Title color of the button:
+By default main button title color is black but it is editable by using hex Color format "hexColor".
+```bash
+metaData: {"buttonTextColor": "value"}
+```
+
+### Set identity Id as parameter for re-verification:
+```bash
+metaData: {"identityId": "value"}
    ```
 
-3. Set the Title color of the button:
-   ```bash
-   yourMetadata: {"buttonTextColor": "hexColor"}
+### Set encryption Configuration Id as parameter for encrypting data.
+```bash
+metaData: {"encryptionConfigurationId": "value"}
    ```
 
-4. Set identity Id as parameter for re-verification:
-    ```bash
-    yourMetadata: {"identityId": "value"}
-    ```
+### Set customization fonts as parameter.
+to add custom fonts, the project needs to have these font files, otherwise SDK will use default fonts:
+```bash
+metadata: {"regularFont": "REGULAR_FONT_NAME.ttf", "boldFont":  "BOLD_FONT_NAME.ttf"}
+   ```
+
 
 ## Some error codes you may encounter during integration
 
