@@ -2,11 +2,16 @@ package com.cordova.plugin.metaMapglobalidsdk;
 
 import android.content.Intent;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
+
 import java.lang.Exception;
+
 import com.metamap.metamap_sdk.MetamapSdk;
 import com.metamap.metamap_sdk.Metadata;
+
 import android.graphics.Color;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -15,14 +20,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
+
 import org.json.*;
+
 import static android.app.Activity.RESULT_OK;
+
 import java.util.HashMap;
 
 /**
  * This class echoes a string called from JavaScript.
  */
-public class MetaMapGlobalIDSDK extends CordovaPlugin  {
+public class MetaMapGlobalIDSDK extends CordovaPlugin {
 
     public static final String SHOW_METAMAPFLOW = "showMetaMapFlow";
     public static final String SET_CALLBACK = "setMetaMapCallback";
@@ -69,7 +77,7 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
         }
     }
 
-    private void showMetaMapFlow(final String clientId, @Nullable final String flowId, @Nullable final String configurationId, @Nullable final String encryptionConfigurationId,  @Nullable final JSONObject metadata,  CallbackContext callbackContext) {
+    private void showMetaMapFlow(final String clientId, @Nullable final String flowId, @Nullable final String configurationId, @Nullable final String encryptionConfigurationId, @Nullable final JSONObject metadata, CallbackContext callbackContext) {
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -87,17 +95,21 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin  {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
-            if(resultCode == RESULT_OK) {
-                HashMap<String,String> map = new HashMap<String,String>();
-                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
-                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
+        if (requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
+                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
                 JSONObject json = new JSONObject(map);
-                PluginResult result = new PluginResult(PluginResult.Status.OK,json);
+                PluginResult result = new PluginResult(PluginResult.Status.OK, json);
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             } else {
-                PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Verification cancelled");
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
+                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
+                JSONObject json = new JSONObject(map);
+                PluginResult result = new PluginResult(PluginResult.Status.ERROR, json);
                 result.setKeepCallback(true);
                 mOnCallback.sendPluginResult(result);
             }

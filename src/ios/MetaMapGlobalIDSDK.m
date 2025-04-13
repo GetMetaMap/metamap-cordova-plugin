@@ -3,48 +3,48 @@
 #import <Cordova/CDV.h>
 #import <MetaMapSDK/MetaMapSDK.h>
 
-@interface MetaMapGlobalIDSDK : CDVPlugin <MetaMapButtonResultDelegate>{
+@interface MetaMapGlobalIDSDK : CDVPlugin <MetaMapButtonResultDelegate> {
     // Member variables go here.
 }
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
-- (void)showMetaMapFlow:(CDVInvokedUrlCommand*)command;
-- (void)setMetaMapCallback:(CDVInvokedUrlCommand*)command;
+- (void)coolMethod:(CDVInvokedUrlCommand *)command;
+
+- (void)showMetaMapFlow:(CDVInvokedUrlCommand *)command;
+
+- (void)setMetaMapCallback:(CDVInvokedUrlCommand *)command;
 
 #define isNull(value) value == nil || [value isKindOfClass:[NSNull class]]
 
 @end
 
-@implementation MetaMapGlobalIDSDK{
-    CDVInvokedUrlCommand* setMetaMapCallbackCDVInvokedUrlCommand;
+@implementation MetaMapGlobalIDSDK {
+    CDVInvokedUrlCommand *setMetaMapCallbackCDVInvokedUrlCommand;
 }
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    NSString* echo = [command.arguments objectAtIndex:0];
-    
+- (void)coolMethod:(CDVInvokedUrlCommand *)command {
+    CDVPluginResult *pluginResult = nil;
+    NSString *echo = [command.arguments objectAtIndex:0];
+
     if (echo != nil && [echo length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
-    
+
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)showMetaMapFlow:(CDVInvokedUrlCommand*)command
-{
-    CDVPluginResult* pluginResult = nil;
-    NSString* clientId = nil;
-    NSString* flowId = nil;
+- (void)showMetaMapFlow:(CDVInvokedUrlCommand *)command {
+    CDVPluginResult *pluginResult = nil;
+    NSString *clientId = nil;
+    NSString *flowId = nil;
 
-    NSString* configurationId = nil;
-    NSString* encryptionConfigurationId = nil;
+    NSString *configurationId = nil;
+    NSString *encryptionConfigurationId = nil;
 
-    NSDictionary* metadata = @{ @"sdkType" : @"cordova"};
-    NSDictionary* options = [[NSDictionary alloc]init];
-    
+    NSDictionary *metadata = @{@"sdkType": @"cordova"};
+    NSDictionary *options = [[NSDictionary alloc] init];
+
     if ([command.arguments count] > 0) {
         options = [command argumentAtIndex:0];
         if (isNull([options objectForKey:@"clientId"])) {
@@ -68,18 +68,18 @@
         if (isNull([options objectForKey:@"configurationId"])) {
             configurationId = nil;
         } else {
-             configurationId = [options objectForKey:@"configurationId"];
+            configurationId = [options objectForKey:@"configurationId"];
         }
 
-         if (isNull([options objectForKey:@"encryptionConfigurationId"])) {
+        if (isNull([options objectForKey:@"encryptionConfigurationId"])) {
             encryptionConfigurationId = nil;
-         } else {
+        } else {
             encryptionConfigurationId = [options objectForKey:@"encryptionConfigurationId"];
-         }
-    
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [MetaMap.shared showMetaMapFlowWithClientId: clientId flowId: flowId configurationId: configurationId encryptionConfigurationId: encryptionConfigurationId metadata: metadata];
-            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [MetaMap.shared showMetaMapFlowWithClientId:clientId flowId:flowId configurationId:configurationId encryptionConfigurationId:encryptionConfigurationId metadata:metadata];
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         });
 
@@ -88,26 +88,30 @@
     }
 }
 
-- (void)setMetaMapCallback:(CDVInvokedUrlCommand*)command
-{
+- (void)setMetaMapCallback:(CDVInvokedUrlCommand *)command {
     setMetaMapCallbackCDVInvokedUrlCommand = command;
     [MetaMapButtonResult shared].delegate = self;
 }
 
-- (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString *)verificationID {
-    if(setMetaMapCallbackCDVInvokedUrlCommand != nil){
+- (void)verificationSuccessWithIdentityId:(NSString *)identityId verificationID:(nullable NSString
+
+*)verificationID {
+    if (setMetaMapCallbackCDVInvokedUrlCommand != nil) {
         NSDictionary *dict = @{@"identityId": identityId, @"verificationID": verificationID};
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
         [pluginResult setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMetaMapCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
-- (void)verificationCancelled {
-    if(setMetaMapCallbackCDVInvokedUrlCommand != nil){
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"Verification cancelled"];
+- (void)verificationCancelledWithIdentityId:(NSString *)identityId verificationID:(nullable NSString
+
+*)verificationID {
+    if (setMetaMapCallbackCDVInvokedUrlCommand != nil) {
+        NSDictionary *dict = @{@"identityId": identityId, @"verificationID": verificationID};
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:dict];
         [pluginResult setKeepCallbackAsBool:YES];
-         [self.commandDelegate sendPluginResult:pluginResult callbackId:setMetaMapCallbackCDVInvokedUrlCommand.callbackId];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:setMetaMapCallbackCDVInvokedUrlCommand.callbackId];
     }
 }
 
