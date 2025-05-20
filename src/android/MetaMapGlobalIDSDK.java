@@ -81,13 +81,31 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin {
         cordova.setActivityResultCallback(this);
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                MetamapSdk.INSTANCE.startFlow(cordova.getActivity(),
+                MetamapSdk.INSTANCE.startFlow(
+                        cordova.getActivity(),
                         clientId,
                         flowId,
                         convertToMetadata(metadata),
                         2576,
                         configurationId,
-                        encryptionConfigurationId);
+                        encryptionConfigurationId,
+                        (identityId, verificationId) -> {
+                            Log.d("MetaMap", "📦 verificationCreated triggered");
+                            if (mOnCallback != null) {
+                                JSONObject json = new JSONObject();
+                                try {
+                                    json.put("eventType", "created");
+                                    json.put("identityId", identityId != null ? identityId : "");
+                                    json.put("verificationID", verificationId != null ? verificationId : "");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json);
+                                pluginResult.setKeepCallback(true);
+                                mOnCallback.sendPluginResult(pluginResult);
+                            }
+                        }
+                );
                 callbackContext.success();
             }
         });
@@ -96,23 +114,39 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MetamapSdk.DEFAULT_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
-                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
-                JSONObject json = new JSONObject(map);
-                PluginResult result = new PluginResult(PluginResult.Status.OK, json);
-                result.setKeepCallback(true);
-                mOnCallback.sendPluginResult(result);
-            } else {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("identityId", data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID));
-                map.put("verificationID", data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID));
-                JSONObject json = new JSONObject(map);
-                PluginResult result = new PluginResult(PluginResult.Status.ERROR, json);
-                result.setKeepCallback(true);
-                mOnCallback.sendPluginResult(result);
+            String identityId = data != null ? data.getStringExtra(MetamapSdk.ARG_IDENTITY_ID) : "";
+            String verificationId = data != null ? data.getStringExtra(MetamapSdk.ARG_VERIFICATION_ID) : "";
+
+            JSONObject json = new JSONObject();
+            try {
+                json.put("identityId", identityId != null ? identityId : "");
+                json.put("verificationID", verificationId != null ? verificationId : "");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+            PluginResult result;
+
+            if (resultCode == RESULT_OK) {
+                Log.d("MetaMap", "✅ verificationSuccess");
+                try {
+                    json.put("eventType", "success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                result = new PluginResult(PluginResult.Status.OK, json);
+            } else {
+                Log.d("MetaMap", "❌ verificationCancelled");
+                try {
+                    json.put("eventType", "cancelled");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                result = new PluginResult(PluginResult.Status.ERROR, json);
+            }
+
+            result.setKeepCallback(true);
+            mOnCallback.sendPluginResult(result);
         }
     }
 
