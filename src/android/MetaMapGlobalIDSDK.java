@@ -89,20 +89,24 @@ public class MetaMapGlobalIDSDK extends CordovaPlugin {
                         2576,
                         configurationId,
                         encryptionConfigurationId,
-                        (identityId, verificationId) -> {
-                            Log.d("MetaMap", "📦 verificationCreated triggered");
-                            if (mOnCallback != null) {
-                                JSONObject json = new JSONObject();
-                                try {
-                                    json.put("eventType", "created");
-                                    json.put("identityId", identityId != null ? identityId : "");
-                                    json.put("verificationID", verificationId != null ? verificationId : "");
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                        new kotlin.jvm.functions.Function2<String, String, kotlin.Unit>() {
+                            @Override
+                            public kotlin.Unit invoke(String identityId, String verificationId) {
+                                Log.d("MetaMap", "📦 verificationCreated triggered");
+                                if (mOnCallback != null) {
+                                    JSONObject json = new JSONObject();
+                                    try {
+                                        json.put("eventType", "created");
+                                        json.put("identityId", identityId != null ? identityId : "");
+                                        json.put("verificationID", verificationId != null ? verificationId : "");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json);
+                                    pluginResult.setKeepCallback(true);
+                                    mOnCallback.sendPluginResult(pluginResult);
                                 }
-                                PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, json);
-                                pluginResult.setKeepCallback(true);
-                                mOnCallback.sendPluginResult(pluginResult);
+                                return kotlin.Unit.INSTANCE;
                             }
                         }
                 );
