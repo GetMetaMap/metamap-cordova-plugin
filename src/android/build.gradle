@@ -4,7 +4,7 @@ repositories {
 }
 
 dependencies {
-    implementation ('com.metamap:android-sdk:3.42.10') {
+    implementation ('com.metamap:android-sdk:3.42.11') {
         exclude group: "com.airbnb.android", module: "lottie-compose"
         exclude group: "org.jetbrains.compose.runtime", module: "runtime-android"
         exclude group: "org.jetbrains.compose.runtime", module: "runtime-desktop"
